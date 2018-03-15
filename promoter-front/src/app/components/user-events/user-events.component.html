@@ -1,0 +1,20 @@
+<button (click)="logMeOutPls()">Log Out </button>
+<p *ngIf="logoutError" class ="error">
+  {{logoutError}}
+</p>
+
+<div *ngIf="currentUser">
+  <header>
+    <p> Hello, {{ currentUser.username }}. </p>
+    <a [routerLink]="['/add-userEvent']">Add a new phone</a>
+    <button (click)="logMeOutPls()"> Log Out </button>
+    <p *ngIf="logoutError" class="error">
+      {{ logoutError }}
+    </p>
+  </header>
+  <h2>UserEvent List</h2>
+
+  <div *ngFor="let userEvent of userEvents">
+    <a [routerLink]="['/user-events', user-event._id]">{{ userEvent.brand }}</a>
+  </div>
+</div>

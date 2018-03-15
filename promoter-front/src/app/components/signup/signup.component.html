@@ -1,0 +1,21 @@
+<h3> Sign Up </h3>
+
+<p *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</p>
+
+<form (ngSubmit)="doSignUp()">
+
+  <label for="username-input"> Username</label>
+  <input id="username-input" type="text" placeholder="blah" [(ngModel)]="signUpInfo.username" name="usernameValue">
+  <br>
+
+  <label for="password-input"> Password </label>
+  <input id="password-input" type="password" placeholder="*****" [(ngModel)]="signUpInfo.password" name="passwordValue">
+  <br>
+
+  <button> Sign Up </button>
+</form>
+<p>Already have account?
+  <a [routerLink]="['/']">Log In</a>
+</p>
