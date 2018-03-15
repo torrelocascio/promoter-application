@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const multer = require('multer');
 const eventRoutes = express.Router();
+var bodyParser = require('body-parser');
 
 const Event = require('../models/event-model');
 const User = require('../models/user-model');
@@ -137,7 +138,7 @@ eventRoutes.put('/api/events/:id', (req, res, next) => {
 
 //Invite Guests to Event Ask Sandra (push promoter event into Guest's Array)
 //!!!!!!!!!!!Edit what happens on invite, new fields, new array push
-eventRoutes.put('/api/user-event/:id/invite', (req, res, next) => {
+eventRoutes.post('/api/user-events/:id/invite', (req, res, next) => {
   
   if (!req.user) {
     res.status(401).json({ message: "Log in to update the event." });
@@ -158,15 +159,15 @@ eventRoutes.put('/api/user-event/:id/invite', (req, res, next) => {
         return
       }
       Event.findById(req.body.id, (err,event)=>{
-        console.log("event id: ",req.body.id );
-        console.log("foundUserEvent:",foundUserEvent)
         if(err){
           res.json(err)
           return
         }
-        console.log("foundUserEvent2", foundUserEvent)
-        foundUserEvent.promoterEventsInvited.push("Test");
+    
+        foundUserEvent.promoterEventsInvited.push(event.id);
         event.userEventsInvited.push(foundUserEvent._id);
+        console.log(event)
+        console.log(foundUserEvent)
         event.save(err=>{
           if(err){
             res.json(err)
@@ -178,11 +179,10 @@ eventRoutes.put('/api/user-event/:id/invite', (req, res, next) => {
               return
             }
             res.json({
-              data:foundUserEvent
+              data:foundUserEvent, event
             })
-            res.json({
-              data2:event
-            })
+
+
           })
         })
       })

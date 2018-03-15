@@ -3,8 +3,10 @@ const express = require("express");
 const multer = require('multer');
 const userEventRoutes = express.Router();
 
+
 const User = require('../models/user-model');
 const UserEvent = require('../models/user-event-model')
+var bodyParser = require('body-parser');
 
 
 // multer for photo
@@ -112,9 +114,8 @@ userEventRoutes.get("/api/user-events/:id", (req, res, next) => {
 userEventRoutes.put('/api/user-events/:id/accept', (req, res, next) => {
 
   
-console.log("UserEvent",UserEvent)
-    UserEvent.findById(req.params.id, (err,foundEvent)=>{
-console.log("Found Event",foundEvent)
+    UserEvent.findById(req.params.id, (err,foundUserEvent)=>{
+console.log("Found Event",foundUserEvent)
       if (!req.user) {
         res.status(401).json({ message: "Log in to update the event." });
         return;
@@ -124,7 +125,7 @@ console.log("Found Event",foundEvent)
           return;
       }
     
-      if(req.user.ispromoter === true || foundEvent.owner.id!==req.user._id){
+      if(req.user.ispromoter === true || foundUserEvent.owner.id!==req.user._id){
         res.status(401).json({message: "You Must be the invited Guest to accept the individual Event"});
         return;}
 
@@ -139,10 +140,10 @@ console.log("Found Event",foundEvent)
           res.json(err)
           return
         }
-        foundUserEvent.eventsInvitedTo.remove(event._id);
-        event.invitedGuests.remove(foundUser._id);
-        foundUserEvent.eventsGoingTo.push(event._id);
-        event.confirmedGuests.push(foundUser._id);
+        foundUserEvent.promoterEventsInvited.remove(event.id);
+        event.userEventsInvited.remove(foundUserEvent._id);
+        foundUserEvent.promoterEventsConfirmed.push(event.id);
+        event.userEventsConfirmed.push(foundUserEvent._id);
         event.save(err=>{
           if(err){
             res.json(err)
@@ -154,7 +155,7 @@ console.log("Found Event",foundEvent)
               return
             }
             res.json({
-              data:foundUserEvent
+              data:foundUserEvent, event
             })
           })
         })
@@ -187,8 +188,9 @@ userEventRoutes.put('/api/user-events/:id/decline', (req, res, next) => {
           res.json(err)
           return
         }
-        foundUser.eventsInvitedTo.remove(event._id);
-        event.invitedGuests.remove(foundUser._id);
+        foundUser.promoterEventsConfirmed.remove(event._id);
+        event.userEventsConfirmed.remove(foundUser._id);
+
 
         event.save(err=>{
           if(err){
