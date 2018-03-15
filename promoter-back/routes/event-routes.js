@@ -5,7 +5,7 @@ const eventRoutes = express.Router();
 
 const Event = require('../models/event-model');
 const User = require('../models/user-model');
-
+const UserEvent = require('../models/user-event-model');
 // multer for photo
 const myUploader = multer({
   dest: __dirname + "/../public/uploads/"
@@ -19,7 +19,7 @@ eventRoutes.post('/api/events/new', myUploader.single('eventPic'), (req, res, ne
         return;
     }
     if(req.user.isPromoter===false){
-      res.status(401).json({message: "You Must Be A Promoter to edit A Venue"});
+      res.status(401).json({message: "You Must Be A Promoter to edit an Event"});
       return;}
 
     const newEvent = new Event({
@@ -138,6 +138,7 @@ eventRoutes.put('/api/events/:id', (req, res, next) => {
 //Invite Guests to Event Ask Sandra (push promoter event into Guest's Array)
 //!!!!!!!!!!!Edit what happens on invite, new fields, new array push
 eventRoutes.put('/api/user-event/:id/invite', (req, res, next) => {
+  
   if (!req.user) {
     res.status(401).json({ message: "Log in to update the event." });
     return;
@@ -158,13 +159,14 @@ eventRoutes.put('/api/user-event/:id/invite', (req, res, next) => {
       }
       Event.findById(req.body.id, (err,event)=>{
         console.log("event id: ",req.body.id );
+        console.log("foundUserEvent:",foundUserEvent)
         if(err){
           res.json(err)
           return
         }
-    
-        foundUserEvent.eventsInvitedTo.push(event._id);
-        event.invitedGuests.push(foundUserEvent._id);
+        console.log("foundUserEvent2", foundUserEvent)
+        foundUserEvent.promoterEventsInvited.push("Test");
+        event.userEventsInvited.push(foundUserEvent._id);
         event.save(err=>{
           if(err){
             res.json(err)

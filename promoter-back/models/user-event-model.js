@@ -11,24 +11,28 @@ const UserEventSchema = new Schema({
             type: String,
             default: String
         },
+        description: {
+            type:String
+        },
         owner: { 
             type: Schema.Types.ObjectId,
-            required: true,
+            required: false,
             ref: 'User'
         },
         timestamps: { 
-          required:true,
+          required:false,
           type: Date
 
         },   
         datesRequested:{
-            type:[Date]
+            type:[String]
         },
         dateGoing:{
             type:Date
         },
         promoterEventsInvited:{
-        type: [Schema.Types.ObjectId],
+        // type: [Schema.Types.ObjectId],
+        type: [String],
         ref:'Event'
         },
         promoterEventsConfirmed:{
@@ -40,4 +44,4 @@ const UserEventSchema = new Schema({
 
 const UserEvent =mongoose.model('UserEvent', UserEventSchema);
 
-module.exports = Event;
+module.exports = UserEvent;

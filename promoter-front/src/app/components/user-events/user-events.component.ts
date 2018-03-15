@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import { UserEventService } from "../../services/user-event.service";
 // import { environment } from "../../../environments/environment";
-
 @Component({
   selector: "app-user-events",
   templateUrl: "./user-events.component.html",
@@ -11,9 +10,9 @@ import { UserEventService } from "../../services/user-event.service";
 })
 export class UserEventsComponent implements OnInit {
   logoutError: string;
-  userEventListError: string;
+  userEventsListError: string;
   userEvents: any;
-  currentUser: string
+  currentUser: string;
 
   constructor(
     private myAuthService: AuthService,
@@ -36,7 +35,7 @@ export class UserEventsComponent implements OnInit {
         console.log(err);
         this.myRouter.navigate(["/"]);
       });
-    // this.getTheUserEvents();
+    // this.getThePhones();
   }
 
   getTheUserEvents() {
@@ -44,18 +43,13 @@ export class UserEventsComponent implements OnInit {
     .subscribe(allTheUserEvents => {
       // console.log("allThePhones: ", allThePhones)
         this.userEvents = allTheUserEvents;
-        console.log("user events", this.userEvents)
+        console.log("userEvents", this.userEvents)
       },
       () => {
-        this.userEventListError = "Sorry, no events.";
+        this.userEventsListError = "Sorry, no phones.";
       }
     );
   } // close getThePhones()
-
-
-
-
-
   logMeOutPls() {
     this.myAuthService
       .logout()

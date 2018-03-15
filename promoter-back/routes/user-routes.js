@@ -32,6 +32,27 @@ userRoutes.get("/api/users/:id", (req, res, next) => {
   });
 });
 
+userRoutes.get("/api/users/:id/user-events", (req, res, next) => {
+  if (!req.user) {
+    res.status(401).json({ message: "Log in to see THE user." });
+    return;
+  }
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).json({ message: "Specified id is not valid" });
+    return;
+  }
+
+  User.findById(req.params.id, (err, theUser) => {
+    if (err) {
+      //res.json(err);
+      res.status(500).json({ message: "Users find went bad." });
+      return;
+    }
+
+    res.status(200).json(theUser);
+  });
+});
+
 
 
 
