@@ -32,6 +32,8 @@ userRoutes.get("/api/users/:id", (req, res, next) => {
   });
 });
 
+//pull user Events
+
 userRoutes.get("/api/users/:id/user-events", (req, res, next) => {
   if (!req.user) {
     res.status(401).json({ message: "Log in to see THE user." });
@@ -68,6 +70,14 @@ userRoutes.put('/api/users/:id', (req, res, next) => {
         res.status(400).json({ message: "Specified id is not valid" });
         return;
     }
+    console.log("This is req.user._id",req.user._id)
+    console.log("This is req.params.id",req.params.id)
+
+    // if(req.user._id !==req.params.id){
+    //     res.status(401).json({message: "You aren't authorized to edit this profile"})
+    //     return;
+    //   }
+    
 
     const updates = {
       username: req.body.userName,

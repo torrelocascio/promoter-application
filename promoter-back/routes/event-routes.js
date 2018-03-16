@@ -138,7 +138,7 @@ eventRoutes.put('/api/events/:id', (req, res, next) => {
 
 //Invite Guests to Event Ask Sandra (push promoter event into Guest's Array)
 //!!!!!!!!!!!Edit what happens on invite, new fields, new array push
-eventRoutes.post('/api/user-events/:id/invite', (req, res, next) => {
+eventRoutes.put('/api/user-events/:id/invite', (req, res, next) => {
   
   if (!req.user) {
     res.status(401).json({ message: "Log in to update the event." });
@@ -195,6 +195,8 @@ eventRoutes.post('/api/user-events/:id/invite', (req, res, next) => {
 
 // delete event
 eventRoutes.delete("/api/events/:id", (req, res, next) => {
+
+  
   if (!req.user) {
     res.status(401).json({ message: "Log in to delete the event." });
     return;
@@ -207,6 +209,20 @@ eventRoutes.delete("/api/events/:id", (req, res, next) => {
     res.status(401).json({message: "You Must Be A Promoter to Delete Events"});
     return;}
 
+    Event.findById(req.params.id, (err,event)=>{
+      if(err){
+        res.json(err)
+        return
+      }
+      if(req.user.isPromoter===true && req.user._id !==event.owner){
+        res.status(401).json({message: "You are not the Promoter Who Created This Event"})
+        return;
+      }
+    
+    })
+
+
+
   Event.remove({ _id: req.params.id }, err => {
     if (err) {
       res.json(err);
@@ -218,6 +234,7 @@ eventRoutes.delete("/api/events/:id", (req, res, next) => {
     });
   });
 });
+
 
 
 
