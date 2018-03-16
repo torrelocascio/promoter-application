@@ -1,3 +1,21 @@
-<p>
-  new-user-event works!
-</p>
+<h3>Add a new User-Event</h3>
+  <p *ngIf="saveError" class="error">
+    {{ saveError }}
+  </p>
+
+<form (ngSubmit)="saveNewUserEvent()">
+
+  <label for="user-event-name-input"> UserEvent Name </label>
+  <input id="user-event-name-input" type="text" placeholder="UserEvent name" [(ngModel)]="userEventData.userEventName" name="userEventName">
+  <br>
+
+  <label for="user-event-name-input"> UserEvent Description </label>
+  <input id="user-event-name-input" type="text" placeholder="UserEvent name" [(ngModel)]="userEventData.userEventName" name="userEventName">
+  <br>
+
+  <label for="user-event-image-input"> User Event Image (optional)</label>
+  <input id="user-event-image-input" type="file" name="userEventImage" ng2FileSelect [uploader]="myCoolUploader">
+  <br>
+
+  <button> Save UserEvent </button>
+</form>

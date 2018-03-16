@@ -17,7 +17,7 @@ const myUploader = multer({
 
 
 // create new user event (1 Date) must edit now !!!!!!!!!!!!!!!
-userEventRoutes.post('/api/user-events/new', myUploader.single('eventPic'), (req, res, next) => {
+userEventRoutes.post('/api/new-user-events', myUploader.single('eventPic'), (req, res, next) => {
   if(!req.user){
       res.status(401).json({message: "Log in to create a Guest Event Request."});
       return;

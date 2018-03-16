@@ -1,0 +1,27 @@
+<strong>{{ phone.brand }}</strong>
+<p>{{ phone.name }}</p>
+<img [src]="baseUrl+phone.image" alt="">
+
+
+<button *ngIf="phone._id" (click)="deleteThisPhone()">DELETE</button>
+
+<div>
+  <a [routerLink]="['/phones']">Take me back to list</a>
+</div>
+
+
+
+<!-- update phone area -->
+
+<form (ngSubmit)="doTheUpdate(phone._id, myForm)" #myForm="ngForm" >
+  <label for="phone-brand-input"> Phone brand </label>
+  <input id="phone-brand-input" type="text"  [(ngModel)]="phone.brand" name="phoneBrand" value="{{ phone.brand }}">
+  <br>
+  <label for="phone-name-input"> Phone Name </label>
+  <input id="phone-name-input" type="text"  [(ngModel)]="phone.name" name="phoneName" value="{{ phone.name }}">
+  <br>
+  <label for="phone-color-input"> Phone color </label>
+  <input id="phone-color-input" type="color"  [(ngModel)]="phone.color" name="phoneColor" value="{{ phone.color }}">
+  <br>
+  <button type="submit">Save updates</button>
+</form>

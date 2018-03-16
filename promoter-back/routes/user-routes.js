@@ -32,7 +32,7 @@ userRoutes.get("/api/users/:id", (req, res, next) => {
   });
 });
 
-//pull user Events
+//pull user Events per User // need help here
 
 userRoutes.get("/api/users/:id/user-events", (req, res, next) => {
   if (!req.user) {
@@ -55,7 +55,28 @@ userRoutes.get("/api/users/:id/user-events", (req, res, next) => {
   });
 });
 
+//pull Promoter Events per Promoter // 
 
+userRoutes.get("/api/users/:id/events", (req, res, next) => {
+  if (!req.user) {
+    res.status(401).json({ message: "Log in to see THE user." });
+    return;
+  }
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).json({ message: "Specified id is not valid" });
+    return;
+  }
+
+  User.findById(req.params.id, (err, theUser) => {
+    if (err) {
+      //res.json(err);
+      res.status(500).json({ message: "Users find went bad." });
+      return;
+    }
+
+    res.status(200).json(theUser);
+  });
+});
 
 
 
@@ -111,6 +132,11 @@ userRoutes.delete("/api/users/:id"
     res.status(400).json({ message: "Specified id is not valid." });
     return;
   }
+
+  if(req.user._id !==req.params.id){
+        res.status(401).json({message: "You aren't authorized to edit this profile"})
+        return;
+    }
 
   User.remove({ _id: req.params.id }, err => {
     if (err) {

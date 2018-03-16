@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 
 
+
 import { AppComponent } from './app.component';
 // services stuff
 import { AuthService } from './services/auth.service';
@@ -11,11 +12,15 @@ import { LoginComponent } from "./components/login/login.component";
 import { HttpModule } from "@angular/http";
 import { UserEventService } from "./services/user-event.service";
 
-
 //routes
 import { AppRoutingModule  } from './app.routing';
 import { UserEventsComponent } from './components/user-events/user-events.component';
 import { NewUserEventComponent } from './components/new-user-event/new-user-event.component';
+
+import { UserEventDetailsComponent } from './components/user-event-details/user-event-details.component';
+
+import { FileUploadModule } from "ng2-file-upload";
+
 
 @NgModule({
   declarations: [
@@ -23,13 +28,16 @@ import { NewUserEventComponent } from './components/new-user-event/new-user-even
     SignupComponent,
     LoginComponent,
     UserEventsComponent,
-    NewUserEventComponent
+    NewUserEventComponent,
+    UserEventDetailsComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    FileUploadModule
   ],
   providers: [AuthService, UserEventService],
   bootstrap: [AppComponent]

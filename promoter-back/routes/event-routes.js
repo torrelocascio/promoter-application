@@ -79,6 +79,7 @@ eventRoutes.get('/api/events', (req, res, next) => {
       });
 });
 
+
 // list single promoter event
 eventRoutes.get("/api/events/:id", (req, res, next) => {
   if (!req.user) {
@@ -193,7 +194,7 @@ eventRoutes.put('/api/user-events/:id/invite', (req, res, next) => {
 
 
 
-// delete event
+// delete promoter event
 eventRoutes.delete("/api/events/:id", (req, res, next) => {
 
   

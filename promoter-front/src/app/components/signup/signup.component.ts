@@ -29,8 +29,8 @@ export class SignupComponent implements OnInit {
         // clear error message
         this.errorMessage = "";
 
-        // redirect to /phones
-        this.myRouter.navigate(["/phones"]);
+        // redirect to /user-events
+        this.myRouter.navigate(["/user-events"]);
       })
       .catch(err => {
         const parsedError = err.json();

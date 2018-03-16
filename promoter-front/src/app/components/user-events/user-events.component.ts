@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import { UserEventService } from "../../services/user-event.service";
-// import { environment } from "../../../environments/environment";
+import { environment } from "../../../environments/environment";
+
 @Component({
   selector: "app-user-events",
   templateUrl: "./user-events.component.html",
@@ -11,8 +12,8 @@ import { UserEventService } from "../../services/user-event.service";
 export class UserEventsComponent implements OnInit {
   logoutError: string;
   userEventsListError: string;
-  userEvents: any;
-  currentUser: string;
+  userEvents: Array<Object>=[];
+  currentUser: any = {};
 
   constructor(
     private myAuthService: AuthService,
@@ -26,7 +27,7 @@ export class UserEventsComponent implements OnInit {
       // If success, we are logged in.
       .then(resultFromApi => {
         this.currentUser = resultFromApi;
-        console.log("user is: ", resultFromApi);
+        console.log("user is: ", this.currentUser);
         this.getTheUserEvents()
       })
 
@@ -35,21 +36,21 @@ export class UserEventsComponent implements OnInit {
         console.log(err);
         this.myRouter.navigate(["/"]);
       });
-    // this.getThePhones();
+    // this.getTheUserEvents();
   }
 
   getTheUserEvents() {
     this.myUserEventService.getAllUserEvents()
     .subscribe(allTheUserEvents => {
-      // console.log("allThePhones: ", allThePhones)
+      // console.log("allTheUserEvents: ", allTheUserEvents)
         this.userEvents = allTheUserEvents;
         console.log("userEvents", this.userEvents)
       },
       () => {
-        this.userEventsListError = "Sorry, no phones.";
+        this.userEventsListError = "Sorry, no user events.";
       }
     );
-  } // close getThePhones()
+  } // close getTheUserEvents()
   logMeOutPls() {
     this.myAuthService
       .logout()
