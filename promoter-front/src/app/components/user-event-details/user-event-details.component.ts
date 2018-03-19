@@ -62,10 +62,8 @@ export class UserEventDetailsComponent implements OnInit {
   doTheUpdate(id, formData) {
     // console.log("=============== id: ", id);
     const formInfo = formData.form.controls;
-    console.log("=============== formData: ", formInfo.phoneName);
-    this.userEventBrand = formInfo.userEventBrand.value;
+    console.log("=============== formData: ", formInfo.userEventName);
     this.userEventName = formInfo.userEventName.value;
-    this.userEventColor = formInfo.userEventColor.value;
     this.sendUpdatesToApi(id);
   }
 

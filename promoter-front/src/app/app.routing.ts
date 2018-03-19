@@ -7,6 +7,7 @@ import { UserEventsComponent } from "./components/user-events/user-events.compon
 import { UserEventDetailsComponent } from "./components/user-event-details/user-event-details.component";
 import { NewUserEventComponent } from "./components/new-user-event/new-user-event.component";
 import { EditProfileComponent } from "./components/edit-profile/edit-profile.component";
+import { NewEventComponent } from "./components/new-event/new-event.component";
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: "edit-profile",
     component: EditProfileComponent
+  },
+  {
+    path: "new-event",
+    component: NewEventComponent
   }
 ];
 

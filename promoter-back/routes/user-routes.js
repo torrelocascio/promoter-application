@@ -3,6 +3,7 @@ const express = require("express");
 const multer = require('multer');
 const userRoutes = express.Router();
 
+const UserEvents = require('../models/user-event-model')
 const User = require('../models/user-model');
 
 // multer for photo
@@ -54,6 +55,26 @@ userRoutes.get("/api/users/:id/user-events", (req, res, next) => {
     res.status(200).json(theUser);
   });
 });
+
+//Pull all user events
+
+// userRoutes.get('/api/user-events', (req, res, next) => {
+//   if (!req.user) {
+//     res.status(401).json({ message: "Log in to see user events." });
+//     return;
+//   }
+//   UserEvents.find()
+//     // retrieve all the info of the owners (needs "ref" in model)
+//     // don't retrieve "encryptedPassword" though
+//     .populate('user', { encryptedPassword: 0 })
+//     .exec((err, allTheUserEvents) => {
+//       if (err) {
+//         res.status(500).json({ message: "User Events find went bad." });
+//         return;
+//       }
+//       res.status(200).json({allTheUserEvents: allTheUserEvents});
+//     });
+// });
 
 //pull Promoter Events per Promoter // 
 

@@ -33,9 +33,9 @@ const UserSchema = new Schema({
             type: Number
         },
 
-        isPromoter: {
-            Type: Boolean,
-            default: false
+        ispromoter: {
+            type: String,
+            default: 'false'
         },
         eventCreated:{
             type: [Schema.Types.ObjectId], ref: "Event"

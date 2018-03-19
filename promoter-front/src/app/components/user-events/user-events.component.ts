@@ -22,21 +22,16 @@ export class UserEventsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.myAuthService
-      .checklogin()
-      // If success, we are logged in.
-      .then(resultFromApi => {
-        this.currentUser = resultFromApi;
-        console.log("user is: ", this.currentUser);
-        this.getTheUserEvents()
-      })
-
-      // Even if you don't do anything on error, catch to avoid a console error.
-      .catch(err => {
-        console.log(err);
-        this.myRouter.navigate(["/"]);
-      });
-    // this.getTheUserEvents();
+    this.myAuthService.checklogin()
+    .then(res => {
+      console.log("res is: ===", res)
+      this.currentUser = res;
+      this.getTheUserEvents()
+    })
+    .catch(err => {
+      console.log("err is: ", err)
+    })
+    
   }
 
   getTheUserEvents() {
@@ -51,6 +46,9 @@ export class UserEventsComponent implements OnInit {
       }
     );
   } // close getTheUserEvents()
+
+
+
   logMeOutPls() {
     this.myAuthService
       .logout()

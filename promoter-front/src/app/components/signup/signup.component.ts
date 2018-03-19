@@ -21,6 +21,7 @@ export class SignupComponent implements OnInit {
   ngOnInit() {}
 
   doSignUp() {
+    console.log(this.signUpInfo);
     this.myAuth
       .signup(this.signUpInfo)
       .then(resultFromApi => {

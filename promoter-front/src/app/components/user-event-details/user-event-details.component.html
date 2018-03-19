@@ -14,14 +14,8 @@
 <!-- update phone area -->
 
 <form (ngSubmit)="doTheUpdate(user-event._id, myForm)" #myForm="ngForm" >
-  <label for="user-event-brand-input"> User-Event brand </label>
-  <input id="user-event-brand-input" type="text"  [(ngModel)]="phone.brand" name="phoneBrand" value="{{ phone.brand }}">
-  <br>
   <label for="user-event-name-input"> User-Event Name </label>
-  <input id="user-event-name-input" type="text"  [(ngModel)]="phone.name" name="phoneName" value="{{ phone.name }}">
-  <br>
-  <label for="user-event-color-input"> User-Event color </label>
-  <input id="user-event-color-input" type="color"  [(ngModel)]="phone.color" name="phoneColor" value="{{ phone.color }}">
+  <input id="user-event-name-input" type="text"  [(ngModel)]="userEvent.name" name="userEventName" value="{{ userEvent.name }}">
   <br>
   <button type="submit">Save updates</button>
 </form>

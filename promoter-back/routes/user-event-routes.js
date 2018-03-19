@@ -62,22 +62,34 @@ userEventRoutes.post('/api/new-user-events', myUploader.single('eventPic'), (req
 //list all user-events
 
 userEventRoutes.get('/api/user-events', (req, res, next) => {
+  console.log("hello1")
   if (!req.user) {
     res.status(401).json({ message: "Log in to see events." });
     return;
   }
+  console.log("User is: ", req.user)
 
-  UserEvent.find()
+  UserEvent.find({}, (err, allTheUserEvents) =>{
+
+    if (err) {
+      res.status(500).json({ message: "UserEvents find went bad." });
+      return;
+    }
+    console.log("hello2")
+
+    console.log("allTheUserEvents", allTheUserEvents)
+    res.status(200).json(allTheUserEvents);
+  })
     // retrieve all the info of the owners (needs "ref" in model)
     // don't retrieve "encryptedPassword" though
-    .populate('user', { encryptedPassword: 0 })
-    .exec((err, allTheUserEvents) => {
-      if (err) {
-        res.status(500).json({ message: "UserEvents find went bad." });
-        return;
-      }
-      res.status(200).json(allTheUserEvents);
-    });
+    // .populate('user', { encryptedPassword: 0 })
+    // .exec((err, allTheUserEvents) => {
+    //   if (err) {
+    //     res.status(500).json({ message: "UserEvents find went bad." });
+    //     return;
+    //   }
+    //   res.status(200).json(allTheUserEvents);
+    // });
 });
 
 //list all user-events for one user

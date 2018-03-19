@@ -22,6 +22,9 @@ import { UserEventDetailsComponent } from './components/user-event-details/user-
 import { FileUploadModule } from "ng2-file-upload";
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { NewEventComponent } from './components/new-event/new-event.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { NewVenueComponent } from './components/new-venue/new-venue.component';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     NewUserEventComponent,
     UserEventDetailsComponent,
     WelcomeComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    NewEventComponent,
+    ProfileComponent,
+    NewVenueComponent
     
   ],
   imports: [

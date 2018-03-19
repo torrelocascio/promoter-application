@@ -7,8 +7,7 @@
       <p *ngIf="errorMessage" class="error">
         {{ errorMessage }}
       </p>
-
-      <form (ngSubmit)="doSignUp()">
+      <form #signupform (ngSubmit)="doSignUp()">
 
         <label for="username-input"> Username</label>
         <input id="username-input" type="text" placeholder="blah" [(ngModel)]="signUpInfo.username" name="usernameValue">
@@ -18,16 +17,36 @@
         <input id="password-input" type="password" placeholder="*****" [(ngModel)]="signUpInfo.password" name="passwordValue">
         
         <br>
-        <label>Promoter?</label>
-          <input name="options" ng-control="options" type="radio" [value]="1" [(ngModel)]="model.options" >
-      <label>Guest?</label>
-          <input name="options" ng-control="options" type="radio" [value]="2" [(ngModel)]="model.options" ><br/>
+        <div class="row">
         
-        <button class="btn-success"> Sign Up </button>
+        <div class="col-sm-10 checkbox-radios">
+          <div class="form-check d-inline-block">
+            <label class="form-check-label">
+              <input class="form-check-input" [(ngModel)]="signUpInfo.ispromoter" [checked]="signUpInfo.ispromoter === true" type="radio" name="ispromoter" value="true" checked> As Promoter
+              <span class="circle">
+                <span class="check"></span>
+              </span>
+            </label>
+          </div>
+
+          <div class="form-check d-inline-block pl-2">
+            <label class="form-check-label">
+              <input class="form-check-input" [(ngModel)]="signUpInfo.ispromoter" [checked]="signUpInfo.ispromoter === 'false'" type="radio" name="ispromoter" value="false" checked> As Guest
+              <span class="circle">
+                <span class="check"></span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    
+    
+  
+     
+        <button type=submit class="btn-success"> Sign Up </button>
       </form>
       <p>Already have account?
         <a [routerLink]="['/']">Log In</a>
-      </p>
       </div>
     </div>
   </div>

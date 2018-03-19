@@ -8,7 +8,7 @@ export class AuthService {
   constructor(private myHttp: Http) {}
 
   signup(componentInfo) {
-    return (
+    return ( 
       this.myHttp
         .post(
           `${environment.apiBase}/api/signup`,
@@ -16,12 +16,15 @@ export class AuthService {
           // Form body information to send to the back end (req.body)
           {
             signUpUsername: componentInfo.username,
-            signUpPassword: componentInfo.password
+            signUpPassword: componentInfo.password,
+            ispromoter: componentInfo.ispromoter
           }
+          
 
           // Send the cookies across domains
           // { withCredentials: true }
         )
+        
 
         // Convert from observable to promise
         .toPromise()

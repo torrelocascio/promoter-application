@@ -33,7 +33,12 @@ authRoutes.post('/api/signup', (req, res, next) => {
         const theUser = new User({
            username: req.body.signUpUsername,
            encryptedPassword: scrambledPassword,
+           ispromoter: req.body.ispromoter
         });
+        
+
+
+        console.log(theUser);
         theUser.save((err)=> {
             if(err){
                 res.status(500).json({message: "Saving user went bad."});
@@ -43,6 +48,7 @@ authRoutes.post('/api/signup', (req, res, next) => {
             req.login(theUser,(err) => {
                 if(err){
                     res.status(500).json({message: "Login went bad."});
+                    console.log(err);
                     return;
                 }
                 // Clear the encryptedPassword before sending
@@ -95,11 +101,16 @@ authRoutes.post("/api/logout", (req, res, next) => {
 });
 
 authRoutes.get("/api/checklogin", (req, res, next) => {
-  if (req.isAuthenticated()) {return 
-      console.log("im here")
-    res.status(200).json(req.user);
-    return;
-  }
+    console.log("checking", req.user)
+
+    if(req.user){
+        res.status(200).json(req.user);
+    }
+//   if (req.isAuthenticated()) {return 
+//       console.log("im here")
+//     res.status(200).json(req.user);
+//     return;
+//   }
   // Clear the encryptedPassword before sending
   // (not from the database, just from the object)
 //   req.user.encryptedPassword = undefined;

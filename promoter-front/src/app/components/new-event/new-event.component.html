@@ -1,0 +1,21 @@
+<h3>Add a new Event</h3>
+  <p *ngIf="saveError" class="error">
+    {{ saveError }}
+  </p>
+
+<form (ngSubmit)="saveNewEvent()">
+
+  <label for="event-name-input"> UserEvent Name </label>
+  <input id="event-name-input" type="text" placeholder="Event name" [(ngModel)]="eventData.eventName" name="eventName">
+  <br>
+
+  <label for="event-name-input"> Event Description </label>
+  <input id="event-name-input" type="text" placeholder="Event name" [(ngModel)]="eventData.eventDescription" name="eventDescription">
+  <br>
+
+  <label for="event-image-input"> User Event Image (optional)</label>
+  <input id="event-image-input" type="file" name="eventImage" ng2FileSelect [uploader]="myCoolUploader">
+  <br>
+
+  <button> Save UserEvent </button>
+</form>
