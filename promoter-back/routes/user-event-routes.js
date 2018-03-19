@@ -4,7 +4,9 @@ const multer = require('multer');
 const userEventRoutes = express.Router();
 
 
+
 const User = require('../models/user-model');
+const Event = require('../models/event-model');
 const UserEvent = require('../models/user-event-model')
 var bodyParser = require('body-parser');
 
@@ -28,10 +30,10 @@ userEventRoutes.post('/api/new-user-events', myUploader.single('eventPic'), (req
 
   const newUserEvent = new UserEvent({
     name: req.body.userEventName,
-    owner: req.user._id,
-    description: req.body.description,
-    image: req.body.image,
-    datesRequested: req.body.date
+    // owner: req.user._id,
+    // description: req.body.description,
+    // image: req.body.image,
+    // datesRequested: req.body.date
 
   });
   if(req.file){
@@ -111,39 +113,130 @@ userEventRoutes.get("/api/user-events/:id", (req, res, next) => {
 
 //Accept Invitation Event!!!!!!!!!New Array Fields, edit what happens
 
-userEventRoutes.put('/api/user-events/:id/accept', (req, res, next) => {
-
+// userEventRoutes.put('/api/user-events/:id/accept', (req, res, next) => {
+//       if (!req.user) {
+//               res.status(401).json({ message: "Log in to update the event." });
+//               return;
+//             }
+//       if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+//           res.status(400).json({ message: "Specified id is not valid" });
+//           return;
+//       }
   
-    UserEvent.findById(req.params.id, (err,foundUserEvent)=>{
-console.log("Found Event",foundUserEvent)
-      if (!req.user) {
-        res.status(401).json({ message: "Log in to update the event." });
-        return;
-      }
-      if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-          res.status(400).json({ message: "Specified id is not valid" });
-          return;
-      }
-    
-      if(req.user.ispromoter === true || foundUserEvent.owner.id!==req.user._id){
-        res.status(401).json({message: "You Must be the invited Guest to accept the individual Event"});
-        return;}
+//     UserEvent.findById(req.params.id, (err,foundUserEvent)=>{
+//       // console.log("Found user Event",foundUserEvent)
+      
+//     // console.log("foundUserEvent.owner.id", foundUserEvent.owner)
+//     // console.log("promo true", req.user.ispromoter)
+//     // console.log("user is", req.user._id)
+//     //   if(foundUserEvent.owner === req.user._id){
+//     //     res.status(401).json({message: "You Must be the invited Guest to accept the individual Event"});
+//     //     return;}
 
-      console.log("event id: ",req.params.id )
+//       // console.log("event id: ",req.params.id )
+//       if(err){
+//         console.log("err", err)
+//         // res. json(err)
+//         return
+//       }
+
+//       Event.findById(req.body.id, (err, event)=>{
+//         if(err){
+//           res.json(err)
+//           return
+//         }
+
+//         // UserEvent.findById(req.params.id, (err,foundUserEvent)=>{
+//           // console.log("Found Event",foundUserEvent)
+//           // if(err){
+//           //   res.json(err)
+//           //   return
+//           // }
+//         foundUserEvent.promoterEventsInvited.remove(event.id);
+//         event.userEventsInvited.remove(foundUserEvent._id);
+//         foundUserEvent.promoterEventsConfirmed.push(event.id);
+//         event.userEventsConfirmed.push(foundUserEvent._id);
+//         console.log("heyyyy", event.userEventsConfirmed)
+
+//         event.save(err=>{
+//           if(err){
+//             res.json(err)
+//             return
+//           }
+//           foundUserEvent.save(err=>{
+//             if(err){
+//               res.json(err)
+//               return
+//             }
+//             console.log("end")
+//             res.json({
+//               data:{ foundUserEvent, event}
+//             })
+//           })
+//         })
+//       // })
+//     })
+//   })
+// });
+
+//TESTING FOR ACCEPTING INVITE
+
+userEventRoutes.put('/api/user-events/:id/accept', (req, res, next) => {
+  
+  if (!req.user) {
+    res.status(401).json({ message: "Log in to update the event." });
+    return;
+  }
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      res.status(400).json({ message: "Specified id is not valid" });
+      return;
+  }
+  if(req.user.isPromoter===true){
+    res.status(401).json({message: "You Must Be A Guest to Accept the Event"});
+    return;}
+
+    UserEvent.findById(req.params.id, (err,foundUserEvent)=>{
+      // console.log("user id: ",req.params.id )
+
       if(err){
         res.json(err)
         return
+
       }
+
+  if(req.user.ispromoter === false &&theUserEvent.creator!==req.user._id){
+      res.status(401).json({message: "You Must Be A Promoter or the Guest Event Creator to view the individual Event"});
+      return;}
+
+
+  
+
+
+
       Event.findById(req.body.id, (err,event)=>{
-        console.log("event id: ",req.body.id );
         if(err){
           res.json(err)
           return
         }
-        foundUserEvent.promoterEventsInvited.remove(event.id);
+        // console.log("Here is the event============",event)
+        // console.log("Here is the foundUserEvent=========",foundUserEvent)
+        // console.log("---------------------------------")
+        // console.log(foundUserEvent.promoterEventsInvited);
+        // console.log("---------------------------------")
+        // console.log(event.userEventsInvited);
+        // console.log("---------------------------------")
+        // console.log(foundUserEvent.promoterEventsInvited);
+        // console.log("---------------------------------")
+        // console.log(foundUserEvent.promoterEventsConfirmed);
+        // console.log("---------------------------------")
+        // console.log(event.userEventsConfirmed);
+
+        foundUserEvent.promoterEventsInvited.remove(event._id);
         event.userEventsInvited.remove(foundUserEvent._id);
-        foundUserEvent.promoterEventsConfirmed.push(event.id);
+        foundUserEvent.promoterEventsConfirmed.push(event._id);
         event.userEventsConfirmed.push(foundUserEvent._id);
+        // console.log("heyyyy", event.userEventsConfirmed)
+
         event.save(err=>{
           if(err){
             res.json(err)
@@ -157,15 +250,19 @@ console.log("Found Event",foundUserEvent)
             res.json({
               data:foundUserEvent, event
             })
+
+
           })
         })
       })
     })
 });
 
-//Decline Invitation Event !!!!!!!!!Update What Happens to arrays, new fields
+//Testing for Decline Invite:
+
 
 userEventRoutes.put('/api/user-events/:id/decline', (req, res, next) => {
+  
   if (!req.user) {
     res.status(401).json({ message: "Log in to update the event." });
     return;
@@ -174,37 +271,65 @@ userEventRoutes.put('/api/user-events/:id/decline', (req, res, next) => {
       res.status(400).json({ message: "Specified id is not valid" });
       return;
   }
-  
+  if(req.user.isPromoter===true){
+    res.status(401).json({message: "You Must Be A Guest to Accept the Event"});
+    return;}
 
-    User.findById(req.params.id, (err,foundUser)=>{
-      console.log("user id: ",req.params.id )
+    UserEvent.findById(req.params.id, (err,foundUserEvent)=>{
+      // console.log("user id: ",req.params.id )
+
       if(err){
         res.json(err)
         return
+
       }
+
+
+    if(req.user.ispromoter === false &&theUserEvent.creator!==req.user._id){
+      res.status(401).json({message: "You Must Be A Promoter or the Guest Event Creator to view the individual Event"});
+      return;}
+
+
+  
+
+    
       Event.findById(req.body.id, (err,event)=>{
-        console.log("event id: ",req.body.id );
         if(err){
           res.json(err)
           return
         }
-        foundUser.promoterEventsConfirmed.remove(event._id);
-        event.userEventsConfirmed.remove(foundUser._id);
+        // console.log("Here is the event============",event)
+        // console.log("Here is the foundUserEvent=========",foundUserEvent)
+        // console.log("---------------------------------")
+        // console.log(foundUserEvent.promoterEventsInvited);
+        // console.log("---------------------------------")
+        // console.log(event.userEventsInvited);
+        // console.log("---------------------------------")
+        // console.log(foundUserEvent.promoterEventsInvited);
+        // console.log("---------------------------------")
+        // console.log(foundUserEvent.promoterEventsConfirmed);
+        // console.log("---------------------------------")
+        // console.log(event.userEventsConfirmed);
 
+        foundUserEvent.promoterEventsInvited.remove(event._id);
+        event.userEventsInvited.remove(foundUserEvent._id);
+        // console.log("heyyyy", event.userEventsConfirmed)
 
         event.save(err=>{
           if(err){
             res.json(err)
             return
           }
-          foundUser.save(err=>{
+          foundUserEvent.save(err=>{
             if(err){
               res.json(err)
               return
             }
             res.json({
-              data:foundUser
+              data:foundUserEvent, event
             })
+
+
           })
         })
       })

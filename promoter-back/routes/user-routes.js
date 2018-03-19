@@ -101,10 +101,10 @@ userRoutes.put('/api/users/:id', (req, res, next) => {
     
 
     const updates = {
-      username: req.body.userName,
-      owner: req.user._id,
+      username: req.body.username,
+      // owner: req.user._id,
       description: req.body.description,
-      profileImage: req.body.image,
+      // profileImage: req.body.image,
       address: req.body.address,
 
     };
@@ -133,10 +133,12 @@ userRoutes.delete("/api/users/:id"
     return;
   }
 
-  if(req.user._id !==req.params.id){
-        res.status(401).json({message: "You aren't authorized to edit this profile"})
-        return;
-    }
+  // if(req.user._id !==req.params.id){
+  //       res.status(401).json({message: "You aren't authorized to delete this profile"})
+  //       return;
+  //   }
+
+    
 
   User.remove({ _id: req.params.id }, err => {
     if (err) {

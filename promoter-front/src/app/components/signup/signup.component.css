@@ -1,0 +1,43 @@
+*{
+  color:white
+}
+
+input{
+  color: black
+}
+
+.error {
+  padding: 15px;
+  border: 2px solid crimson;
+  border-radius: 3px;
+  color: crimson;
+}
+
+.jumbotron{
+  background-image:url('/assets/images/miamibackground.png');
+  height: 550px;
+  width:100%;
+  margin: 0px;
+  background-repeat: none;
+  align-content: center;
+  padding: 0 auto
+ 
+  
+
+}
+.row{
+  align-content:center;
+  align-items: center;
+  padding-top:60px
+}
+.col{
+padding: 0 auto;
+margin: 0 auto
+}
+
+
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}

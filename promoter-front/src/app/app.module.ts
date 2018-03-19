@@ -20,6 +20,8 @@ import { NewUserEventComponent } from './components/new-user-event/new-user-even
 import { UserEventDetailsComponent } from './components/user-event-details/user-event-details.component';
 
 import { FileUploadModule } from "ng2-file-upload";
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { FileUploadModule } from "ng2-file-upload";
     LoginComponent,
     UserEventsComponent,
     NewUserEventComponent,
-    UserEventDetailsComponent
+    UserEventDetailsComponent,
+    WelcomeComponent,
+    EditProfileComponent
     
   ],
   imports: [
@@ -37,7 +41,7 @@ import { FileUploadModule } from "ng2-file-upload";
     AppRoutingModule,
     FormsModule,
     HttpModule,
-    FileUploadModule
+    FileUploadModule,
   ],
   providers: [AuthService, UserEventService],
   bootstrap: [AppComponent]

@@ -6,13 +6,14 @@ const VenueSchema = new Schema({
             type: String, 
             required: true 
         },
+        description: {
+            type: String,
+        },
 
         profileImage: { 
             type: String 
         },
-        otherImages:{
-          type:[String]
-        },
+
         owner: { 
             type: Schema.Types.ObjectId,
             required: true,

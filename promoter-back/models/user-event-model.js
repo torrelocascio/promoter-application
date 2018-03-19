@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
 const UserEventSchema = new Schema({
         name: { 
             type: String, 
@@ -31,14 +32,19 @@ const UserEventSchema = new Schema({
             type:Date
         },
         promoterEventsInvited:{
-        // type: [Schema.Types.ObjectId],
-        type: [String],
-        ref:'Event'
+            type: [Schema.Types.ObjectId],
+            ref: 'Event'
+        // ref:'Event'
         },
         promoterEventsConfirmed:{
-            type: Schema.Types.ObjectId,
-            ref:'Event'
-            }
+            type: [Schema.Types.ObjectId],
+            ref: 'Event'
+        },
+        comments: {
+            type: [Schema.Types.ObjectId],
+            ref: "Comment"
+        }
+
 
 });
 

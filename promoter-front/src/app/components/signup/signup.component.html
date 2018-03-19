@@ -1,21 +1,33 @@
-<h3> Sign Up </h3>
 
-<p *ngIf="errorMessage" class="error">
-  {{ errorMessage }}
-</p>
+  <div class="jumbotron">
+    <div class="row vcenter">
+      <div class="col-12 col-offset-6">
+      <h3> Sign Up </h3>
 
-<form (ngSubmit)="doSignUp()">
+      <p *ngIf="errorMessage" class="error">
+        {{ errorMessage }}
+      </p>
 
-  <label for="username-input"> Username</label>
-  <input id="username-input" type="text" placeholder="blah" [(ngModel)]="signUpInfo.username" name="usernameValue">
-  <br>
+      <form (ngSubmit)="doSignUp()">
 
-  <label for="password-input"> Password </label>
-  <input id="password-input" type="password" placeholder="*****" [(ngModel)]="signUpInfo.password" name="passwordValue">
-  <br>
+        <label for="username-input"> Username</label>
+        <input id="username-input" type="text" placeholder="blah" [(ngModel)]="signUpInfo.username" name="usernameValue">
+        <br>
 
-  <button> Sign Up </button>
-</form>
-<p>Already have account?
-  <a [routerLink]="['/']">Log In</a>
-</p>
+        <label for="password-input"> Password </label>
+        <input id="password-input" type="password" placeholder="*****" [(ngModel)]="signUpInfo.password" name="passwordValue">
+        
+        <br>
+        <label>Promoter?</label>
+          <input name="options" ng-control="options" type="radio" [value]="1" [(ngModel)]="model.options" >
+      <label>Guest?</label>
+          <input name="options" ng-control="options" type="radio" [value]="2" [(ngModel)]="model.options" ><br/>
+        
+        <button class="btn-success"> Sign Up </button>
+      </form>
+      <p>Already have account?
+        <a [routerLink]="['/']">Log In</a>
+      </p>
+      </div>
+    </div>
+  </div>

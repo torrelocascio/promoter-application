@@ -16,13 +16,13 @@ const UserSchema = new Schema({
         otherImages: {
            type:[String]
             },
-        address: {
-                city: String,
-                state: String,
-                zip: Number
-            },
+        // address: {
+        //         city: String,
+        //         state: String,
+        //         zip: Number
+        //     },
         description: {
-            Type: String
+            type: String
         },
 
         gender: {

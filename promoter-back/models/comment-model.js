@@ -17,6 +17,6 @@ const CommentSchema = new Schema({
         timestamps: true
     });
 
-const Venue =mongoose.model('Venue', VenueSchema);
+const Comment =mongoose.model('Comment', CommentSchema);
 
-module.exports = Venue;
+module.exports = Comment;

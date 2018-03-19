@@ -108,6 +108,16 @@ venueRoutes.put('/api/venues/:id', (req, res, next) => {
       res.status(401).json({message: "You Must Be A Promoter to edit A Venue"});
       return;}
 
+//       Venue.findById(req.params.id, (err, venue) => {
+// console.log('This is the Owner ID',venue.owner);
+// console.log('This is the req.user.id.', req.user._id)
+// if(req.user._id !== venue.owner){
+//   res.status(401).json({message: "You aren't authorized to edit this venue"})
+//   return;
+// }  
+//   });
+  
+      
     const updates = {
       name: req.body.venueName,
       owner: req.user._id,
@@ -140,6 +150,17 @@ venueRoutes.delete("/api/venues/:id", (req, res, next) => {
   if(req.user.isPromoter===false){
     res.status(401).json({message: "You Must Be A Promoter to edit A Venue"});
     return;}
+    
+//       Venue.findById(req.params.id, (err, venue) => {
+// console.log('This is the Owner ID',venue.owner);
+// console.log('This is the req.user.id.', req.user._id)
+// if(req.user._id !== venue.owner){
+//   res.status(401).json({message: "You aren't authorized to edit this venue"})
+//   return;
+// }  
+//   });
+  
+
 
   Venue.remove({ _id: req.params.id }, err => {
     if (err) {

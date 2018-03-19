@@ -13,16 +13,16 @@ const myUploader = multer({
 
 
 // create new comment
-// Route to Handle Review Form Submission
-router.post('api/user-events/:id/comments/new', (req, res, next) => {
-  // Load the Product From the Database
-  let eventsId = req.params.id;
+// Route to Handle Review Comment Submission
+commentRoutes.post('/api/user-events/:id/comments/new', (req, res, next) => {
+  // Load the UserEvent From the Database
+  let eventId = req.params.id;
 
   UserEvent.findById(eventId, (err, event) => {
+      console.log("Event+++++++++++++++", event)
       // Create the Schema Object to Save the Review
       const newComment = new Comment({
-          content: req.body.content,
-          title: req.body.stars,
+          text: req.body.content,
           owner: req.user._id
       });
       
@@ -33,7 +33,7 @@ router.post('api/user-events/:id/comments/new', (req, res, next) => {
       event.save((err) => {
           if (err) { return next(err); }
           // Redirect the user to the event page
-          res.redirect(`/events/${event._id}`);
+          res.json(event)
       });
   });
 });

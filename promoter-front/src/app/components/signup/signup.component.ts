@@ -15,7 +15,8 @@ export class SignupComponent implements OnInit {
   errorMessage:String;
   signUpInfo={
     username:"",
-    password:""
+    password:"",
+    ispromoter: false
   }
   ngOnInit() {}
 
@@ -24,7 +25,7 @@ export class SignupComponent implements OnInit {
       .signup(this.signUpInfo)
       .then(resultFromApi => {
         // clear form
-        this.signUpInfo = { username: "", password: "" };
+        this.signUpInfo = { username: "", password: "", ispromoter:false };
 
         // clear error message
         this.errorMessage = "";

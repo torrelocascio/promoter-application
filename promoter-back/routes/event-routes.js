@@ -43,7 +43,7 @@ eventRoutes.post('/api/events/new', myUploader.single('eventPic'), (req, res, ne
         // validation errors
         if (err && newEvent.errors){
             res.status(400).json({
-                brandError: newEvent.errors.brand,
+                // brandError: newEvent.errors.brand,
             });
             return;
         }
@@ -119,7 +119,6 @@ eventRoutes.put('/api/events/:id', (req, res, next) => {
 
     const updates = {
       name: req.body.eventName,
-      owner: req.user._id,
       place: req.body.venue,
       description: req.body.description,
       image: req.body.image,
@@ -153,22 +152,31 @@ eventRoutes.put('/api/user-events/:id/invite', (req, res, next) => {
     res.status(401).json({message: "You Must Be A Promoter to Edit an Event"});
     return;}
 
+
+  
+
     UserEvent.findById(req.params.id, (err,foundUserEvent)=>{
-      console.log("user id: ",req.params.id )
+      // console.log("user id: ",req.params.id )
+
       if(err){
         res.json(err)
         return
+
       }
+  
+      
+
       Event.findById(req.body.id, (err,event)=>{
         if(err){
           res.json(err)
           return
         }
-    
-        foundUserEvent.promoterEventsInvited.push(event.id);
+        console.log("Here is the event============",event)
+        console.log("Here is the foundUserEvent=========",foundUserEvent)
+
+        foundUserEvent.promoterEventsInvited.push(event._id);
         event.userEventsInvited.push(foundUserEvent._id);
-        console.log(event)
-        console.log(foundUserEvent)
+
         event.save(err=>{
           if(err){
             res.json(err)

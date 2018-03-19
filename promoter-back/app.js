@@ -65,6 +65,9 @@ app.use("/", venueRoutes);
 var userEventRoutes = require("./routes/user-event-routes");
 app.use("/", userEventRoutes);
 
+var commentRoutes = require("./routes/comment-routes");
+app.use("/", commentRoutes);
+
 // var userEventRoutes = require("./routes/user-event-routes");
 // app.use("/", userEventRoutes);
 
