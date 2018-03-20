@@ -128,9 +128,40 @@ function gtfoIfNotLogged(req, res, next) {
   next();
 }
 
+//Check Role Route
+authRoutes.get("/api/checkrole", (req, res, next) => {
+    console.log("checking", req.user)
+
+    if(req.user){
+console.log("req.user.json+++++++++++",req.user.json)
+        return req.user.json
+         
+    }
+    function gtfoIfNotLogged(req, res, next) {
+        if (!req.isAuthenticated()) {
+          res.status(403).json({ message: "FORBIDDEN." });
+          return;
+        }
+      
+        next();
+//   if (req.isAuthenticated()) {return 
+//       console.log("im here")
+//     res.status(200).json(req.user);
+//     return;
+//   }
+  // Clear the encryptedPassword before sending
+  // (not from the database, just from the object)
+//   req.user.encryptedPassword = undefined;
+
+//   res.status(200).json(req.user);
+    res.status(401).json({ message: "Unauthorized. Backend" });
+    }
+})
+
+
 authRoutes.get("/api/private", gtfoIfNotLogged, (req, res, next) => {
   res.json({ message: "Todays lucky number is 7677" });
-});
+})
 
 
 

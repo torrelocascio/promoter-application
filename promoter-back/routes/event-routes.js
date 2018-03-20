@@ -14,12 +14,12 @@ const myUploader = multer({
 
 
 // create new promoter event !!!!!!!!!Edit the new Event Fields
-eventRoutes.post('/api/events/new', myUploader.single('eventPic'), (req, res, next) => {
+eventRoutes.post('/api/new-events', myUploader.single('eventPic'), (req, res, next) => {
     if(!req.user){
         res.status(401).json({message: "Log in to create event."});
         return;
     }
-    if(req.user.isPromoter===false){
+    if(req.user.isPromoter==="false"){
       res.status(401).json({message: "You Must Be A Promoter to edit an Event"});
       return;}
 
@@ -47,10 +47,24 @@ eventRoutes.post('/api/events/new', myUploader.single('eventPic'), (req, res, ne
             });
             return;
         }
-        req.user.encryptedPassword = undefined;
-        newEvent.user = req.user;
 
-        res.status(200).json(newEvent);
+     
+        
+        // req.user.encryptedPassword = undefined;
+        newEvent.user = req.user;
+console.log("newEvent._id+++++++++++",newEvent._id)
+console.log("req.user.eventCreated++++++++++",req.user.eventCreated)
+
+req.user.eventCreated.push(newEvent)
+req.user.save(err => {
+  if(err){
+    console.log("err saving user: ", err);
+  }
+  res.status(200).json(newEvent);
+
+})
+
+
     });
 });
 
@@ -63,7 +77,7 @@ eventRoutes.get('/api/events', (req, res, next) => {
       res.status(401).json({ message: "Log in to see events." });
       return;
     }
-    if(req.user.isPromoter===false){
+    if(req.user.isPromoter==="false"){
       res.status(401).json({message: "You Must Be A Promoter View All Promoter Events"});
       return;}
     Event.find()
@@ -113,7 +127,7 @@ eventRoutes.put('/api/events/:id', (req, res, next) => {
         res.status(400).json({ message: "Specified id is not valid" });
         return;
     }
-    if(req.user.isPromoter===false){
+    if(req.user.isPromoter==="false"){
       res.status(401).json({message: "You Must Be A Promoter to Edit an Event"});
       return;}
 
@@ -148,7 +162,7 @@ eventRoutes.put('/api/user-events/:id/invite', (req, res, next) => {
       res.status(400).json({ message: "Specified id is not valid" });
       return;
   }
-  if(req.user.isPromoter===false){
+  if(req.user.isPromoter==="false"){
     res.status(401).json({message: "You Must Be A Promoter to Edit an Event"});
     return;}
 
@@ -214,7 +228,7 @@ eventRoutes.delete("/api/events/:id", (req, res, next) => {
     res.status(400).json({ message: "Specified id is not valid." });
     return;
   }
-  if(req.user.isPromoter===false){
+  if(req.user.isPromoter==="false"){
     res.status(401).json({message: "You Must Be A Promoter to Delete Events"});
     return;}
 
@@ -223,7 +237,7 @@ eventRoutes.delete("/api/events/:id", (req, res, next) => {
         res.json(err)
         return
       }
-      if(req.user.isPromoter===true && req.user._id !==event.owner){
+      if(req.user.isPromoter==="true" && req.user._id !==event.owner){
         res.status(401).json({message: "You are not the Promoter Who Created This Event"})
         return;
       }

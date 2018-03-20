@@ -2,125 +2,44 @@
 <div class="container bootstrap snippets">
 <div class="row">
   <div class="col-xs-12 col-sm-9">
-    <form class="form-horizontal">
+      <form (ngSubmit)="doTheUpdate(user._id, myForm)" #myForm="ngForm" >
       <div class="panel panel-default">
         <div class="panel-heading">
         <h4 class="panel-title">User info</h4>
         </div>
         <div class="panel-body">
+         
           <div class="form-group">
-            <label class="col-sm-2 control-label">Location</label>
+            <label class="col-sm-2 control-label">UserName</label>
             <div class="col-sm-10">
-              <select class="form-control">
-                <option selected="">Select country</option>
-                <option>Belgium</option>
-                <option>Canada</option>
-                <option>Denmark</option>
-                <option>Estonia</option>
-                <option>France</option>
-              </select>
+                <input id="phone-brand-input" type="text"  [(ngModel)]="user.username" name="username" value="{{ user.username }}">
+              
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label">Company name</label>
+            <label class="col-sm-2 control-label">Description</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Position</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control">
+                <input id="phone-brand-input" type="text"  [(ngModel)]="user.description" name="description" value="{{ user.description }}">
             </div>
           </div>
         </div>
       </div>
 
       <div class="panel panel-default">
+        
         <div class="panel-heading">
-        <h4 class="panel-title">Contact info</h4>
+        <h4 class="panel-title">Profile Image</h4>
+        <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
         </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Work number</label>
-            <div class="col-sm-10">
-              <input type="tel" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Mobile number</label>
-            <div class="col-sm-10">
-              <input type="tel" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">E-mail address</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Work address</label>
-            <div class="col-sm-10">
-              <textarea rows="3" class="form-control"></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-        <h4 class="panel-title">Security</h4>
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Current password</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">New password</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-10 col-sm-offset-2">
-              <div class="checkbox">
-                <input type="checkbox" id="checkbox_1">
-                <label for="checkbox_1">Make this account public</label>
-              </div>
-            </div>
-          </div>
+     
           <div class="form-group">
             <div class="col-sm-10 col-sm-offset-2">
               <button type="submit" class="btn btn-primary">Submit</button>
-              <button type="reset" class="btn btn-default">Cancel</button>
             </div>
           </div>
         </div>
-      </div>
-
     </form>
-
-  </div>
-  <div class="col-xs-12 col-sm-3">
-    
-    <div class="profile__contact-info">
-      <div class="profile__contact-info-item">
-        <div class="profile__contact-info-icon">
-          <i class="fa fa-comment"></i>
-        </div>
-        <div class="profile__contact-info-body">
-          <h5 class="profile__contact-info-heading">
-            Quick tip
-          </h5>
-          This form contains some of the common profile fields you are encouraged to edit to suit your needs.
-        </div>
-      </div>
     </div>
-
+    </div>
   </div>
-</div>
-</div>
+  

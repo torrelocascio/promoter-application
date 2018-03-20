@@ -11,7 +11,7 @@ import { AuthService } from "../../services/auth.service";
 export class SignupComponent implements OnInit {
 
   constructor(private myAuth: AuthService, private myRouter: Router) {}
-
+  signedInUser = <any>{};
   errorMessage:String;
   signUpInfo={
     username:"",
@@ -25,14 +25,17 @@ export class SignupComponent implements OnInit {
     this.myAuth
       .signup(this.signUpInfo)
       .then(resultFromApi => {
+        this.signedInUser = resultFromApi;
+
+        // redirect to /user-events
+        this.myRouter.navigate(["/users", this.signedInUser._id]);
         // clear form
         this.signUpInfo = { username: "", password: "", ispromoter:false };
 
         // clear error message
         this.errorMessage = "";
 
-        // redirect to /user-events
-        this.myRouter.navigate(["/user-events"]);
+        
       })
       .catch(err => {
         const parsedError = err.json();

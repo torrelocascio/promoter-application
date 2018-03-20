@@ -1,0 +1,21 @@
+<strong>{{ event.name }}</strong>
+<p>{{ user-event.description }}</p>
+<!-- <img [src]="baseUrl+phone.image" alt=""> -->
+
+
+<button *ngIf="event._id" (click)="deleteThisEvent()">DELETE</button>
+
+<div>
+  <a [routerLink]="['/events']">Take me back to list</a>
+</div>
+
+
+
+<!-- update phone area -->
+
+<form (ngSubmit)="doTheUpdate(event._id, myForm)" #myForm="ngForm" >
+  <label for="event-name-input"> Event Name </label>
+  <input id="event-name-input" type="text"  [(ngModel)]="event.name" name="eventName" value="{{ event.name }}">
+  <br>
+  <button type="submit">Save updates</button>
+</form>

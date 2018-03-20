@@ -93,4 +93,7 @@ export class AuthService {
         .then(res => res.json())
     );
   } // close checklogin()
+
+
+
 }

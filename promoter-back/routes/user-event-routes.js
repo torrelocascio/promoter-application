@@ -24,7 +24,7 @@ userEventRoutes.post('/api/new-user-events', myUploader.single('eventPic'), (req
       res.status(401).json({message: "Log in to create a Guest Event Request."});
       return;
   }
-  if(req.user.isPromoter===true){
+  if(req.user.isPromoter==="true"){
     res.status(401).json({message: "You Must Be A Guest to create a Guest Event Request"});
     return;}
 
@@ -110,7 +110,7 @@ userEventRoutes.get("/api/user-events/:id", (req, res, next) => {
 
   UserEvent.findById(req.params.id, (err, theUserEvent) => {
     
-    if(req.user.ispromoter === false &&theUserEvent.creator!==req.user._id){
+    if(req.user.ispromoter === "false" &&theUserEvent.creator!==req.user._id){
       res.status(401).json({message: "You Must Be A Promoter or the Guest Event Creator to view the individual Event"});
       return;}
     if (err) {
@@ -203,7 +203,7 @@ userEventRoutes.put('/api/user-events/:id/accept', (req, res, next) => {
       res.status(400).json({ message: "Specified id is not valid" });
       return;
   }
-  if(req.user.isPromoter===true){
+  if(req.user.isPromoter==="true"){
     res.status(401).json({message: "You Must Be A Guest to Accept the Event"});
     return;}
 
@@ -216,7 +216,7 @@ userEventRoutes.put('/api/user-events/:id/accept', (req, res, next) => {
 
       }
 
-  if(req.user.ispromoter === false &&theUserEvent.creator!==req.user._id){
+  if(req.user.ispromoter === "false" &&theUserEvent.creator!==req.user._id){
       res.status(401).json({message: "You Must Be A Promoter or the Guest Event Creator to view the individual Event"});
       return;}
 
@@ -283,7 +283,7 @@ userEventRoutes.put('/api/user-events/:id/decline', (req, res, next) => {
       res.status(400).json({ message: "Specified id is not valid" });
       return;
   }
-  if(req.user.isPromoter===true){
+  if(req.user.isPromoter==="true"){
     res.status(401).json({message: "You Must Be A Guest to Accept the Event"});
     return;}
 
@@ -297,7 +297,7 @@ userEventRoutes.put('/api/user-events/:id/decline', (req, res, next) => {
       }
 
 
-    if(req.user.ispromoter === false &&theUserEvent.creator!==req.user._id){
+    if(req.user.ispromoter === "false" &&theUserEvent.creator!==req.user._id){
       res.status(401).json({message: "You Must Be A Promoter or the Guest Event Creator to view the individual Event"});
       return;}
 

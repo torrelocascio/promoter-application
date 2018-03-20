@@ -17,7 +17,7 @@ venueRoutes.post('/api/venues/new', myUploader.single('venuePic'), (req, res, ne
         res.status(401).json({message: "Log in to create venue."});
         return;
     }
-    if(req.user.isPromoter===false){
+    if(req.user.isPromoter==="false"){
       res.status(401).json({message: "You Must Be A Promoter to Create A Venue"});
       return;
   }
@@ -104,7 +104,7 @@ venueRoutes.put('/api/venues/:id', (req, res, next) => {
         res.status(400).json({ message: "Specified id is not valid" });
         return;
     }
-    if(req.user.isPromoter===false){
+    if(req.user.isPromoter==="false"){
       res.status(401).json({message: "You Must Be A Promoter to edit A Venue"});
       return;}
 

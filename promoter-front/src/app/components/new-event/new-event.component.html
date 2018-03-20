@@ -5,7 +5,7 @@
 
 <form (ngSubmit)="saveNewEvent()">
 
-  <label for="event-name-input"> UserEvent Name </label>
+  <label for="event-name-input"> Event Name </label>
   <input id="event-name-input" type="text" placeholder="Event name" [(ngModel)]="eventData.eventName" name="eventName">
   <br>
 
@@ -17,5 +17,5 @@
   <input id="event-image-input" type="file" name="eventImage" ng2FileSelect [uploader]="myCoolUploader">
   <br>
 
-  <button> Save UserEvent </button>
+  <button> Save Event </button>
 </form>

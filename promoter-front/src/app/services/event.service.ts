@@ -40,4 +40,8 @@ export class EventService {
         .toPromise()
   }
 
+  getPromoterEventsPerPromoter(id){
+    return this.myHttp.get(`/api/users/${id}/events`,
+  {withCredentials:true}).toPromise()
+}
 }

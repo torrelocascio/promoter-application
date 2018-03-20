@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
     username: "",
     password: ""
   };
+  loggedInUser = <any>{};
 
   loginErrorMessage: string;
 
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
       .checklogin()
       // If success, we are logged in.
       .then(resultFromApi => {
-        this.myRouter.navigate(["/user-events"]);
+
+        // this.myRouter.navigate(["/users", this.loggedInUser._id]);
       })
 
       // Even if you don't do anything on error, catch to avoid a console error.
@@ -37,6 +39,8 @@ export class LoginComponent implements OnInit {
     this.myAuthService
       .login(this.loginInfo)
       .then(resultFromApi => {
+        this.loggedInUser = resultFromApi;
+
         // clear the form
         this.loginInfo = {
           username: "",
@@ -47,7 +51,7 @@ export class LoginComponent implements OnInit {
         this.loginErrorMessage = "";
 
         // redirect to /user-events
-        this.myRouter.navigate(["/user-events"]);
+        this.myRouter.navigate(["/users", this.loggedInUser._id]);
       })
       .catch(err => {
         const parsedError = err.json();

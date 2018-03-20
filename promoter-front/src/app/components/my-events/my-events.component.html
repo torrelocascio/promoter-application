@@ -1,0 +1,19 @@
+<div *ngIf="userInfo">
+    <header>
+      <p> Hello, {{ userInfo.username }}. </p>
+      <a [routerLink]="['/new-event']">Add a new event</a>
+      <button (click)="logMeOutPls()"> Log Out </button>
+      <p *ngIf="logoutError" class="error">
+        {{ logoutError }}
+      </p>
+    </header>
+    <h2>My Promoter Event List</h2>
+  
+    <div *ngFor="let event of events">
+      <div *ngIf="event.owner === userInfo._id" >  
+        <a [routerLink]="['/events', event]">{{ event.name }}</a>
+      </div>
+    </div>
+  </div>
+
+

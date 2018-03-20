@@ -17,6 +17,7 @@ export class NewEventComponent implements OnInit {
     eventDescription: ""
   };
   saveError: string;
+  userInSession= <any>{};
 
   myCoolUploader = new FileUploader({
     url: environment.apiBase + "/api/user-events",
@@ -29,7 +30,9 @@ export class NewEventComponent implements OnInit {
      this.myAuthService
        .checklogin()
        // If success, we are logged in.
-       .then()
+       .then( res=>{
+         this.userInSession = res;
+       }  )
 
        // Even if you don't do anything on error, catch to avoid a console error.
        .catch(err => {
@@ -54,9 +57,10 @@ export class NewEventComponent implements OnInit {
           eventName: "",
           eventDescription: ""
         };
-        console.log("______", this.eventData)
+        // console.log("______", this.eventData)
         this.saveError = "";
-        this.myRouter.navigate(["/events"]);
+        // ['/users',userInfo._id,'events']
+        this.myRouter.navigate(["/users", this.userInSession._id,"events"]);
       })
       
       .catch(err => {

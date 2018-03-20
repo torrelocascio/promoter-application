@@ -99,11 +99,33 @@ userRoutes.get("/api/users/:id/events", (req, res, next) => {
   });
 });
 
+//List All User Events Per User
+
+userRoutes.get("/api/users/:id/user-events", (req, res, next) => {
+  if (!req.user) {
+    res.status(401).json({ message: "Log in to see THE user." });
+    return;
+  }
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).json({ message: "Specified id is not valid" });
+    return;
+  }
+
+  User.findById(req.params.id, (err, theUser) => {
+    if (err) {
+      //res.json(err);
+      res.status(500).json({ message: "Users find went bad." });
+      return;
+    }
+
+    res.status(200).json(theUser);
+  });
+});
 
 
 
 // update the User
-userRoutes.put('/api/users/:id', (req, res, next) => {
+userRoutes.put('/api/users/:id', myUploader.single('file'), (req, res, next) => {
     if (!req.user) {
       res.status(401).json({ message: "Log in to update the user." });
       return;
@@ -126,7 +148,9 @@ userRoutes.put('/api/users/:id', (req, res, next) => {
       // owner: req.user._id,
       description: req.body.description,
       // profileImage: req.body.image,
-      address: req.body.address,
+      // address: req.body.address,
+      // profileImage: `/uploads/${req.file.filename}`,
+      // specs: JSON.parse(req.body.specs) || []
 
     };
 
