@@ -26,8 +26,8 @@ const EventSchema = new Schema({
             required: false
         },
         userEventsInvited: {
-            type: [Schema.Types.ObjectId],
-            ref: 'UserEvent'
+            type: []
+            // ref: 'UserEvent'
         },
         userEventsConfirmed:{
             type: [Schema.Types.ObjectId],

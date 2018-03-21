@@ -34,6 +34,7 @@ export class SignupComponent implements OnInit {
 
         // clear error message
         this.errorMessage = "";
+        this.myRouter.navigate(['/login'])
 
         
       })

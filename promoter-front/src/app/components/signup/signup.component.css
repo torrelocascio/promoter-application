@@ -30,9 +30,12 @@ input{
   align-items: center;
   padding-top:60px
 }
-.col{
+.col-12{
 padding: 0 auto;
-margin: 0 auto
+margin: 0 auto;
+background-color: rgba(73, 71, 71, 0.644);
+align-content: center;
+align-items:center
 }
 
 
@@ -40,4 +43,22 @@ margin: 0 auto
   display: inline-block;
   vertical-align: middle;
   float: none;
+}
+
+.checkbox-radios{
+  margin-top:-60px;
+  padding:2px
+}
+
+.form-check{
+  margin:8px
+}
+
+.btn-lg{
+  align-self: center;
+  margin: 0px auto;
+
+}
+form{
+  align-items:center
 }

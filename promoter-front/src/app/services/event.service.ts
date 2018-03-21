@@ -44,4 +44,13 @@ export class EventService {
     return this.myHttp.get(`/api/users/${id}/events`,
   {withCredentials:true}).toPromise()
 }
+
+sendTheEvents(userEventId, promoterEventId){
+  var theThing = {promoterEventThing: ""};
+  theThing.promoterEventThing = promoterEventId;
+  console.log("TheThingKKKKKKKKKKKKKK",theThing)
+  return this.myHttp.put(`${environment.apiBase}/api/user-events/${userEventId}/invite`, theThing, { withCredentials: true })
+    .toPromise()
+}
+
 }

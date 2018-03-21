@@ -38,8 +38,7 @@ const UserSchema = new Schema({
             default: 'false'
         },
         eventCreated:{
-            type: [Schema.Types.ObjectId],
-            ref: "Event"
+            type: []
         },
 
         // datesGoingOut:{

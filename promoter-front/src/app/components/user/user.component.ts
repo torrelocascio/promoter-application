@@ -30,7 +30,7 @@ export class UserComponent implements OnInit {
     this.myAuth.checklogin()
     .then(res =>{
       this.userInfo = res;
-      console.log(this.userInfo)
+      console.log("==============",this.userInfo)
     })
     
   }

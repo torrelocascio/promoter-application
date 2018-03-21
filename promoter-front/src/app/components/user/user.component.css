@@ -1,0 +1,19 @@
+.container-fluid{
+  background-image: url('/assets/images/miamibackground2.png');
+  padding: 0;
+  margin: 0;
+ height:100%;
+ width:auto
+
+}
+.img-thumbnail{
+  width: 200px;
+  height: 200px
+}
+.btn{
+  margin:5px
+}
+
+.main-section{
+  background-color: rgba(225, 225, 225, 0.644)
+}

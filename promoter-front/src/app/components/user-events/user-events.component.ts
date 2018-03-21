@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import { UserEventService } from "../../services/user-event.service";
 import { environment } from "../../../environments/environment";
+import { EventService } from "../../services/event.service";
 
 @Component({
   selector: "app-user-events",
@@ -18,7 +19,8 @@ export class UserEventsComponent implements OnInit {
   constructor(
     private myAuthService: AuthService,
     private myRouter: Router,
-    private myUserEventService: UserEventService
+    private myUserEventService: UserEventService,
+    private myEventService: EventService
   ) {}
 
   ngOnInit() {
@@ -59,4 +61,21 @@ export class UserEventsComponent implements OnInit {
         this.logoutError = "Log out went bad.";
       });
   } // close logMeOutPls()
+
+  collectTheData(userEventId, dataToSend){
+
+    console.log("+++++++++++++++++++",userEventId)
+
+    console.log("---------------------",dataToSend)
+      this.myEventService.sendTheEvents(userEventId, dataToSend)
+      .then(res => {
+        console.log("res in invite: ", res);
+      })
+      .catch( err => {
+        console.log("Error in sending invite");
+      })
+  }
+
+
+
 }

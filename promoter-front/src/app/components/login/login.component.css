@@ -1,5 +1,6 @@
 *{
-  color:white
+  color:white;
+  margin:5px
 }
 
 input{
@@ -15,10 +16,9 @@ input{
 
 .jumbotron{
   background-image:url('/assets/images/miamibackground.png');
-  height: 550px;
+  height: 100%;
   width:100%;
   margin: 0px;
-  background-repeat: none;
   align-content: center;
   padding: 0 auto
  
@@ -30,14 +30,10 @@ input{
   align-items: center;
   padding-top:60px
 }
-.col{
+.col-12{
 padding: 0 auto;
-margin: 0 auto
+margin: 0 auto;
+background-color: rgba(73, 71, 71, 0.644);
+align-content: center
 }
 
-
-.vcenter {
-  display: inline-block;
-  vertical-align: middle;
-  float: none;
-}

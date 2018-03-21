@@ -153,7 +153,7 @@ eventRoutes.put('/api/events/:id', (req, res, next) => {
 //Invite Guests to Event Ask Sandra (push promoter event into Guest's Array)
 //!!!!!!!!!!!Edit what happens on invite, new fields, new array push
 eventRoutes.put('/api/user-events/:id/invite', (req, res, next) => {
-  
+  console.log(req.body)
   if (!req.user) {
     res.status(401).json({ message: "Log in to update the event." });
     return;
@@ -178,18 +178,18 @@ eventRoutes.put('/api/user-events/:id/invite', (req, res, next) => {
 
       }
   
-      
+      console.log("req.body.theThing.promoterEventThing",req.body.promoterEventThing)
 
-      Event.findById(req.body.id, (err,event)=>{
-        if(err){
+      Event.findOne({name: req.body.theThing.promoterEventThing}, (err,event)=>{
+        if(err){console.log(err)
           res.json(err)
           return
         }
         console.log("Here is the event============",event)
         console.log("Here is the foundUserEvent=========",foundUserEvent)
 
-        foundUserEvent.promoterEventsInvited.push(event._id);
-        event.userEventsInvited.push(foundUserEvent._id);
+        foundUserEvent.promoterEventsInvited.push(event);
+        event.userEventsInvited.push(foundUserEvent);
 
         event.save(err=>{
           if(err){

@@ -1,29 +1,28 @@
 
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="offset-lg-4 col-lg-4 col-sm-6 col-12 main-section text-center">
-          <div class="row">
-              <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
-          </div>
-          <div class="row user-detail">
-              <div class="col-lg-12 col-sm-12 col-12">
-                  <img src="/demo/man01.png" class="rounded-circle img-thumbnail">
-                  <h5>{{userInfo.username}} - {{ userInfo.description }}</h5>
-                  <p><i class="fa fa-map-marker" aria-hidden="true"></i> Tagline</p>
+      <div class="offset-lg-3 col-lg-6 offset-sm-3 col-sm-6 col-12 main-section text-center border border-primary">
+          
+            
+                  <img src="/assets/images/miamibackground.png" class="rounded-circle img-thumbnail">
+                  <h5>{{userInfo.username}} - </h5>
+                  <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ userInfo.description }}</p>
 
                   <hr>
-                  <a  *ngIf="userInfo.ispromoter==='true'" class="btn btn-success btn-sm" [routerLink]="['/users',userInfo._id,'events']"  >Show My Created Promoter Events</a>
+                  <a  *ngIf="userInfo.ispromoter==='true'" class="btn btn-success btn-sm" [routerLink]="['/users',userInfo._id,'events']" >Show My Created Promoter Events</a>
                   <a  *ngIf="userInfo.ispromoter==='false'" class="btn btn-success btn-sm" [routerLink]="['/users/:id/user-events']" >Show My Created Events</a>
 
                   <a *ngIf="userInfo.ispromoter==='true'" class="btn btn-info btn-sm"[routerLink]="['/user-events']">Browse User-Events</a>
                   <a *ngIf="userInfo.ispromoter==='false'" class="btn btn-info btn-sm" [routerLink]="['/events']">Browse Promoter Events</a>
 
-                  <a class="btn btn-info btn-sm" [routerLink]="['/users',userInfo._id,'edit-profile']">Edit Profile</a>
+                  <a class="btn btn-warning btn-sm" [routerLink]="['/users',userInfo._id,'edit-profile']">Edit Profile</a>
 
-                  <a *ngIf="userInfo.ispromoter==='false'"class="btn btn-info btn-sm" [routerLink]="['/new-user-event']">Add Guest Event Request</a>
-                  <a *ngIf="userInfo.ispromoter==='true'" class="btn btn-info btn-sm" [routerLink]="['/new-event']">Add Promoter Event Request</a>
-
+                  <a *ngIf="userInfo.ispromoter==='false'"class="btn btn-danger btn-sm" [routerLink]="['/new-user-event']">Add Guest Event Request</a>
+                  <a *ngIf="userInfo.ispromoter==='true'" class="btn btn-danger btn-sm" [routerLink]="['/new-event']">Add Promoter Event Request</a>
+                  <button (click)="logMeOutPls()"> Log Out </button>
                   <hr>
-                  <span>Lorem ips consectetur adipisium ,eiusmod tempor incididuin reprehendeanim.</span>
-              </div>
+            
           </div>
+        </div>
+    
+    </div>

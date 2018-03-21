@@ -243,10 +243,10 @@ userEventRoutes.put('/api/user-events/:id/accept', (req, res, next) => {
         // console.log("---------------------------------")
         // console.log(event.userEventsConfirmed);
 
-        foundUserEvent.promoterEventsInvited.remove(event._id);
-        event.userEventsInvited.remove(foundUserEvent._id);
-        foundUserEvent.promoterEventsConfirmed.push(event._id);
-        event.userEventsConfirmed.push(foundUserEvent._id);
+        foundUserEvent.promoterEventsInvited.remove(event);
+        event.userEventsInvited.remove(foundUserEvent);
+        foundUserEvent.promoterEventsConfirmed.push(event);
+        event.userEventsConfirmed.push(foundUserEvent);
         // console.log("heyyyy", event.userEventsConfirmed)
 
         event.save(err=>{
@@ -323,8 +323,8 @@ userEventRoutes.put('/api/user-events/:id/decline', (req, res, next) => {
         // console.log("---------------------------------")
         // console.log(event.userEventsConfirmed);
 
-        foundUserEvent.promoterEventsInvited.remove(event._id);
-        event.userEventsInvited.remove(foundUserEvent._id);
+        foundUserEvent.promoterEventsInvited.remove(event);
+        event.userEventsInvited.remove(foundUserEvent);
         // console.log("heyyyy", event.userEventsConfirmed)
 
         event.save(err=>{
