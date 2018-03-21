@@ -55,21 +55,21 @@ const UserSchema = new Schema({
         myEventRequests: {
             type: [Schema.Types.ObjectId],
         
-        ref: "user-event-model"
+        ref: "Event"
         },
         myEventsNowConfirmed:{
             type: [Schema.Types.ObjectId],
         
-        ref: "user-event-model"
+        ref: "Event"
 
         },
         guestRequestsInvited:{
          type: [Schema.Types.ObjectId],
-         ref:'user-event-model'  
+         ref:'UserEvent'  
         },
         guestRequestsConfirmed:{
             type: [Schema.Types.ObjectId],
-            ref:'user-event-model'
+            ref:'UserEvent'
         }
 
         

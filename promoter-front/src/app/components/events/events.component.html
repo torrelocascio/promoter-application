@@ -11,5 +11,6 @@
   
     <div *ngFor="let event of events">
       <a [routerLink]="['/events', event._id]">{{ event.name }}</a>
+      <p>{{event.userEventsInvited}}</p>
     </div>
   </div>

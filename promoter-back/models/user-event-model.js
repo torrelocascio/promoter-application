@@ -31,12 +31,13 @@ const UserEventSchema = new Schema({
         dateGoing:{
             type:Date
         },
-        promoterEventsInvited:{ type: []
-            // type: [Schema.Types.ObjectId],
-            // ref: 'Event'
-        // ref:'Event'
-        },
+        promoterEventsInvited:[],
+        promoterEventsInvitedName:[],
         promoterEventsConfirmed:{
+            type: [],
+            // ref: 'Event'
+        },
+        promoterEventsConfirmedName:{
             type: [],
             // ref: 'Event'
         },

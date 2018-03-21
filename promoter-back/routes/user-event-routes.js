@@ -67,7 +67,7 @@ userEventRoutes.get('/api/user-events', (req, res, next) => {
     res.status(401).json({ message: "Log in to see events." });
     return;
   }
-  console.log("User is: ", req.user)
+  // console.log("User is: ", req.user)
 
   UserEvent.find({}, (err, allTheUserEvents) =>{
 
@@ -220,33 +220,23 @@ userEventRoutes.put('/api/user-events/:id/accept', (req, res, next) => {
       res.status(401).json({message: "You Must Be A Promoter or the Guest Event Creator to view the individual Event"});
       return;}
 
-
-  
-
-
-
       Event.findById(req.body.id, (err,event)=>{
         if(err){
           res.json(err)
           return
         }
-        // console.log("Here is the event============",event)
-        // console.log("Here is the foundUserEvent=========",foundUserEvent)
-        // console.log("---------------------------------")
-        // console.log(foundUserEvent.promoterEventsInvited);
-        // console.log("---------------------------------")
-        // console.log(event.userEventsInvited);
-        // console.log("---------------------------------")
-        // console.log(foundUserEvent.promoterEventsInvited);
-        // console.log("---------------------------------")
-        // console.log(foundUserEvent.promoterEventsConfirmed);
-        // console.log("---------------------------------")
-        // console.log(event.userEventsConfirmed);
+        
+        foundUserEvent.promoterEventsInvited.remove(event._id);
+        foundUserEvent.promoterEventsInvitedName.remove(event.name);
 
-        foundUserEvent.promoterEventsInvited.remove(event);
-        event.userEventsInvited.remove(foundUserEvent);
-        foundUserEvent.promoterEventsConfirmed.push(event);
-        event.userEventsConfirmed.push(foundUserEvent);
+        event.userEventsInvited.remove(foundUserEvent._id);
+        event.userEventsInvitedName.remove(foundUserEvent._name);
+
+        foundUserEvent.promoterEventsConfirmed.push(event._id);
+        foundUserEvent.promoterEventsConfirmedName.push(event.name);
+
+        event.userEventsConfirmed.push(foundUserEvent._id);
+        event.userEventsConfirmed.push(foundUserEvent.name);
         // console.log("heyyyy", event.userEventsConfirmed)
 
         event.save(err=>{
@@ -262,8 +252,6 @@ userEventRoutes.put('/api/user-events/:id/accept', (req, res, next) => {
             res.json({
               data:foundUserEvent, event
             })
-
-
           })
         })
       })
@@ -301,30 +289,17 @@ userEventRoutes.put('/api/user-events/:id/decline', (req, res, next) => {
       res.status(401).json({message: "You Must Be A Promoter or the Guest Event Creator to view the individual Event"});
       return;}
 
-
-  
-
-    
       Event.findById(req.body.id, (err,event)=>{
         if(err){
           res.json(err)
           return
         }
-        // console.log("Here is the event============",event)
-        // console.log("Here is the foundUserEvent=========",foundUserEvent)
-        // console.log("---------------------------------")
-        // console.log(foundUserEvent.promoterEventsInvited);
-        // console.log("---------------------------------")
-        // console.log(event.userEventsInvited);
-        // console.log("---------------------------------")
-        // console.log(foundUserEvent.promoterEventsInvited);
-        // console.log("---------------------------------")
-        // console.log(foundUserEvent.promoterEventsConfirmed);
-        // console.log("---------------------------------")
-        // console.log(event.userEventsConfirmed);
 
-        foundUserEvent.promoterEventsInvited.remove(event);
-        event.userEventsInvited.remove(foundUserEvent);
+        foundUserEvent.promoterEventsInvited.remove(event._id);
+        foundUserEvent.promoterEventsInvitedName.remove(event.name);
+
+        event.userEventsInvited.remove(foundUserEvent._id);
+        event.userEventsInvitedName.remove(foundUserEvent.name);
         // console.log("heyyyy", event.userEventsConfirmed)
 
         event.save(err=>{

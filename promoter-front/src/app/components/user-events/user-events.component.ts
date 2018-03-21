@@ -72,7 +72,7 @@ export class UserEventsComponent implements OnInit {
         console.log("res in invite: ", res);
       })
       .catch( err => {
-        console.log("Error in sending invite");
+        console.log("Error in sending invite", err);
       })
   }
 

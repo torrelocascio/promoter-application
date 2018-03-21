@@ -11,6 +11,7 @@ import { NewEventComponent } from "./components/new-event/new-event.component";
 import { EventsComponent } from "./components/events/events.component";
 import { UserComponent } from "./components/user/user.component";
 import { MyEventsComponent } from "./components/my-events/my-events.component";
+import { MyUserEventsComponent } from "./components/my-user-events/my-user-events.component";
 
 const routes: Routes = [
   {
@@ -56,6 +57,10 @@ const routes: Routes = [
   {
     path: "users/:id/events",
     component: MyEventsComponent
+  },
+  {
+    path: "users/:id/user-events",
+    component: MyUserEventsComponent
   }
 ];
 

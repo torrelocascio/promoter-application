@@ -178,25 +178,40 @@ eventRoutes.put('/api/user-events/:id/invite', (req, res, next) => {
 
       }
   
-      console.log("req.body.theThing.promoterEventThing",req.body.promoterEventThing)
-
-      Event.findOne({name: req.body.theThing.promoterEventThing}, (err,event)=>{
-        if(err){console.log(err)
-          res.json(err)
+      // console.log("name is ============",req.body.promoterEventThing)
+      const name = req.body.promoterEventThing;
+      Event.findOne({"name": name}, (err,event)=>{
+        console.log("in the route");
+        console.log("name here", name);
+        console.log("event here", event)
+        if(err){console.log(
+          "err is: ", err)
+          // res.json(err)
           return
         }
-        console.log("Here is the event============",event)
-        console.log("Here is the foundUserEvent=========",foundUserEvent)
+        // console.log("Here is the event============",event)
+        // console.log("Here is the foundUserEvent=========",foundUserEvent)
 
-        foundUserEvent.promoterEventsInvited.push(event);
-        event.userEventsInvited.push(foundUserEvent);
+        foundUserEvent.promoterEventsInvited.push(event._id);
+        foundUserEvent.promoterEventsInvitedName.push(event.name);
+
+        event.userEventsInvited.push(foundUserEvent._id);
+        event.userEventsInvitedName.push(foundUserEvent.name);
 
         event.save(err=>{
+          // console.log("===============")
+          // console.log(event)
+          // console.log("===============")
+
           if(err){
             res.json(err)
             return
           }
           foundUserEvent.save(err=>{
+            console.log("found user event: ", foundUserEvent)
+            console.log("===============")
+
+
             if(err){
               res.json(err)
               return

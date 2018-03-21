@@ -10,7 +10,7 @@
 
                   <hr>
                   <a  *ngIf="userInfo.ispromoter==='true'" class="btn btn-success btn-sm" [routerLink]="['/users',userInfo._id,'events']" >Show My Created Promoter Events</a>
-                  <a  *ngIf="userInfo.ispromoter==='false'" class="btn btn-success btn-sm" [routerLink]="['/users/:id/user-events']" >Show My Created Events</a>
+                  <a  *ngIf="userInfo.ispromoter==='false'" class="btn btn-success btn-sm" [routerLink]="['/users',userInfo._id,'user-events']" >Show My Created Events</a>
 
                   <a *ngIf="userInfo.ispromoter==='true'" class="btn btn-info btn-sm"[routerLink]="['/user-events']">Browse User-Events</a>
                   <a *ngIf="userInfo.ispromoter==='false'" class="btn btn-info btn-sm" [routerLink]="['/events']">Browse Promoter Events</a>

@@ -25,14 +25,19 @@ const EventSchema = new Schema({
             ref: 'Venue',
             required: false
         },
-        userEventsInvited: {
-            type: []
+        userEventsInvited: [],
+
+        userEventsInvitedName: [],
+        // {
+            // []
             // ref: 'UserEvent'
-        },
+        // },
         userEventsConfirmed:{
-            type: [Schema.Types.ObjectId],
-            ref: 'UserEvent'
-        }
+           type: []
+        },
+        userEventsConfirmedName:{
+            type: []
+         }
         
 },
 {

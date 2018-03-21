@@ -17,8 +17,9 @@ export class MyEventsComponent implements OnInit {
   events: any;
   promoterEvents: any;
   myHttp: Http
-
-  constructor( private myAuth: AuthService, private myEventService: EventService) { }
+  userEventInvited: any;
+  constructor( private myAuth: AuthService, private myEventService: EventService,
+  private myRouter: Router) { }
 
   ngOnInit() {    
     this.myAuth.checklogin()
@@ -27,16 +28,34 @@ export class MyEventsComponent implements OnInit {
       this.promoterEvents = this.userInfo.eventCreated;
       console.log("promo events:", this.promoterEvents)
     })
+    .catch( err => {
+      this.myRouter.navigate(['/login'])
+    })
     this.getMeAllEvents()
   }
+  
 
   getMeAllEvents(){
     this.myEventService.getAllEvents()
     .toPromise()
     .then(res=>{
       this.events = res;
+      console.log("events ============",this.events)
+      
+      // this.events.forEach(oneElement => {
+      //   this.userEventInvited = oneElement.userEventsInvited;
+      //   // console.log("===========",this.userEventInvited )
+
+      // });
       console.log("wellll: ", res)
     })
   }
+  
+  logMeOutPls(){
+    this.myAuth.logout()
+    .then(() => {
+      this.myRouter.navigate(['/login'])
+    })
 
+  }
 }
