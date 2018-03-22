@@ -1,6 +1,7 @@
 *{
   color:white;
-  margin:5px
+  margin:5px;
+  font-family: courier
 }
 
 input{
@@ -14,13 +15,9 @@ input{
   color: crimson;
 }
 
-.jumbotron{
+.container{
   background-image:url('/assets/images/miamibackground.png');
-  height: 100%;
-  width:100%;
-  margin: 0px;
-  align-content: center;
-  padding: 0 auto
+
  
   
 
@@ -35,5 +32,15 @@ padding: 0 auto;
 margin: 0 auto;
 background-color: rgba(73, 71, 71, 0.644);
 align-content: center
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  margin-top:50px
 }
 

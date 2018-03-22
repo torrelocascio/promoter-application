@@ -59,4 +59,20 @@ margin-right: -15px;
   padding-left: 20px;
   color: #999999;
 }
+
+.container{
+  background-image: url('assets/images/miamibackground2.png')
+}
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  margin-top:50px
+}
+*{
+  font-family: courier
+}
                                   

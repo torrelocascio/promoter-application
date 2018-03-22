@@ -20,8 +20,9 @@ export class MyUserEventsComponent implements OnInit {
   userEvents2: any;
   myHttp: Http
   promoterEventsInvited: any;
-  constructor( private myAuth: AuthService, private myUserEventService: UserEventService,
-  private myRouter: Router) { }
+  constructor( private myAuth: AuthService, 
+               private myUserEventService: UserEventService,
+               private myRouter: Router) { }
 
   ngOnInit() {    
     this.myAuth.checklogin()
@@ -61,7 +62,15 @@ export class MyUserEventsComponent implements OnInit {
     .then(() => {
       this.myRouter.navigate(['/login'])
     })
+}
 
-
+sendAccept(userId, userEventId, promoterEventId){
+  this.myUserEventService.acceptInvitation(userId, userEventId,promoterEventId)
+    .then( res => {
+      console.log("in the invite: ", res)
+    })
+    .catch(err => {
+      console.log("err in invite: ", err)
+    })
 }
 }

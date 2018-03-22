@@ -40,6 +40,10 @@ export class UserEventService {
         { withCredentials: true })
         .toPromise()
   }
+  acceptInvitation(userId, userEventId, promoterEventId){
+    return this.myHttp.put(`${environment.apiBase}/api/users/${userId}/user-events/accept`,userEventId, promoterEventId)
+      .toPromise()
+  }
 
 }
 

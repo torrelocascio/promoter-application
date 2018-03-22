@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import { UserService } from "../../services/user.service";
 import { environment } from "../../../environments/environment";
+import { FileUploader } from "ng2-file-upload";
 
 import "rxjs/add/operator/toPromise";
 
@@ -14,11 +15,13 @@ import "rxjs/add/operator/toPromise";
 })
 export class EditProfileComponent implements OnInit {
   user = <any>{};
+  userId=<any>String;
 
   public updatedProfile: Object = {};
   public username: String;
   public description: String;
   public profileImage: String;
+
 
   // userData = {
   //   username:"",
@@ -28,6 +31,12 @@ export class EditProfileComponent implements OnInit {
   saveError = "";
 
   baseUrl = environment.apiBase;
+
+  myCoolUploader = new FileUploader({
+    url: environment.apiBase + "/api/user-events",
+    itemAlias: "file"
+  });
+
 
   constructor(
     private myUserService: UserService,
@@ -49,6 +58,7 @@ export class EditProfileComponent implements OnInit {
       });
     this.myRoute.params.subscribe(params => {
       this.getUserDetails(params["id"]);
+      this.userId=params
     });
   }
   // getting one phone and its details
@@ -75,10 +85,27 @@ export class EditProfileComponent implements OnInit {
     this.myUserService.updateMyProfile(id, this.updatedProfile)
       .toPromise()
       .then(()=>{
-        this.myRouter.navigate(['/user-events'])
+        this.myRouter.navigate(['/users/',this.user._id]);
       })
       .catch()
   }
+
+  private saveProfileWithImage(){
+    this.myCoolUploader.onBuildItemForm = (item, form) => {
+
+    }
+    this.myCoolUploader.onSuccessItem = (item, response) =>{
+
+        this.saveError = ""
+        this.myRouter.navigate(["/user-events"]);
+    }
+    this.myCoolUploader.onErrorItem = (item, response) => {
+      this.saveError = "Saving phone with image went bad. Sorry!";
+    }
+    this.myCoolUploader.uploadAll();
+  }
+
+  
 
 
 

@@ -1,30 +1,35 @@
 
     <header>
       </header>
-  <div *ngIf="userInfo"></div>
-    <div class="container">
-      <div class="row text-center">
+  <div *ngIf="userInfo">
+    <div class="container overlay">
+      <div class="row text-center" style="margin:0px auto">
           <p class="bg-info text-center"> Hello, {{ userInfo.username }}, this is where you can view your created User-Events </p>
         <div class ="col-6 col-offset-3 text-center center-block" style="margin: 0 auto">
-      <a [routerLink]="['/new-user-event']">Add a new user-event</a>
-      <button (click)="logMeOutPls()"> Log Out </button>
+      <button class="btn btn-success"><a [routerLink]="['/new-user-event']">Add a new user-event</a></button>
+      <button class="btn btn-danger" (click)="logMeOutPls()"> Log Out </button>
       <p *ngIf="logoutError" class="error">
         {{ logoutError }}
       </p>
       
  
 
-    <h2 style="margin-top:50px; margin-bottom:20px">My User Event List</h2>
+    <h2 style="margin-top:30px; margin-bottom:20px">My User Event List</h2>
   </div>
   </div>
   <div class="row text-center">
-      <div class ="col-6 col-offset-3 text-center center-block"style="margin: 0 auto">
-    <div *ngFor="let userEvent of userEvents2">
+      <div *ngFor="let userEvent of userEvents2" class ="col-8 col-offset-2 text-center center-block bordered"style="margin: 0 auto; background-color: rgba(73, 71, 71, 0.444);  ">
       <!-- <div *ngIf="userEvent2.owner === userInfo._id" >  -->
           <img class="img-circle img-responsive" src="/assets/images/miamibackground.png" style="width:170px; height:170px"> 
-        <a [routerLink]="['/user-events', user-event]">{{ userEvent.name }}</a>
+          <br>
+        <a [routerLink]="['/user-events', user-event]">My User-Event: <span style="color:hotpink">{{ userEvent.name }}</span></a>
         <p>{{userEvent.description}}</p>
-        <p *ngFor="let one of userEvents2">{{ one.promoterEventsInvitedName }}</p> -->
-      </div>
+        <p>My Invitations: </p>
+        <p *ngFor="let one of userEvents2"><span style="color:hotpink"> {{ one.promoterEventsInvitedName }}</span>
+          <button class="btn btn-success btn-sm"(click)="sendAccept(userInfo._id,userEvent._id, one.promoterEventsInvited)">Accept Invite</button>
+          <button class="btn btn-danger btn-sm">Decline Invite</button>
+        </p>
+        <br>
     </div>
   </div>
+  

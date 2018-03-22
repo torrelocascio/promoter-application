@@ -2,12 +2,12 @@
     <header>
       </header>
   <div *ngIf="userInfo"></div>
-    <div class="container">
+    <div class="container overflow">
       <div class="row text-center">
           <p class="bg-info text-center"> Hello, {{ userInfo.username }}, this is where you can view and also create new Promoter Events </p>
         <div class ="col-6 col-offset-3 text-center center-block" style="margin: 0 auto">
-      <a [routerLink]="['/new-event']">Add a new event</a>
-      <button (click)="logMeOutPls()"> Log Out </button>
+     <button class="btn btn-success"><a [routerLink]="['/new-event']">Add a new event</a> </button>
+      <button class="btn btn-danger" (click)="logMeOutPls()"> Log Out </button>
       <p *ngIf="logoutError" class="error">
         {{ logoutError }}
       </p>
@@ -18,19 +18,21 @@
   </div>
   </div>
   <div class="row text-center">
-      <div class ="col-6 col-offset-3 text-center center-block"style="margin: 0 auto">
-    <div *ngFor="let event of events">
+      <div *ngFor="let event of events" class ="col-6 col-offset-3 text-center center-block"style="margin: 0 auto;background-color: rgba(73, 71, 71, 0.444);  ">
       <div *ngIf="event.owner === userInfo._id" > 
-          <img class="img-circle img-responsive" src="/assets/images/miamibackground.png" style="width:170px; height:170px"> 
-        <a [routerLink]="['/events', event]">{{ event.name }}</a>
+          <img class="rounded-circle img-thumbnail" src="/assets/images/miamibackground.png" style="width:170px; height:170px"> 
+          <br>
+        <a [routerLink]="['/events', event]">My Event: <span style="color:hotpink"> {{ event.name }}</span></a>
         <p>{{event.description}}</p>
-        <p *ngFor="let one of event.userEventsInvitedName">{{ one }}</p>
+        <p style="color:white"*ngFor="let one of event.userEventsInvitedName">Invited but not Confirmed: <span style="color:hotpink"> {{ one }}</span></p>
 
         
-        
-      </div>
+
     </div>
   </div>
+  </div>
+  </div>
+
 
 
 

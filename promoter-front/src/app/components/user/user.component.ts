@@ -18,8 +18,10 @@ export class UserComponent implements OnInit {
   userId: String;
   myHttp: Http
   myEventService: EventService
+  logoutError: string
 
-  constructor( private myAuth: AuthService ) { }
+
+  constructor( private myAuth: AuthService, private myRouter: Router ) { }
 
   ngOnInit() {
     // this.checkRole()
@@ -34,6 +36,18 @@ export class UserComponent implements OnInit {
     })
     
   }
+
+  logMeOutPls() {
+    this.myAuth
+      .logout()
+      .then(() => {
+        this.myRouter.navigate(["/login"]);
+      })
+      .catch(() => {
+        this.logoutError = "Log out went bad.";
+      });
+  } // close logMeOutPls()
+}
 
   // checkRole() {
   //   return
@@ -72,4 +86,3 @@ export class UserComponent implements OnInit {
   // } // close checklogin()
 
 
-}

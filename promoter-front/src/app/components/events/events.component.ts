@@ -53,7 +53,7 @@ export class EventsComponent implements OnInit {
     this.myAuthService
       .logout()
       .then(() => {
-        this.myRouter.navigate(["/"]);
+        this.myRouter.navigate(["/login"]);
       })
       .catch(() => {
         this.logoutError = "Log out went bad.";

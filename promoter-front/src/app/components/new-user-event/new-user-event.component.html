@@ -1,21 +1,27 @@
-<h3>Add a new User-Event</h3>
-  <p *ngIf="saveError" class="error">
-    {{ saveError }}
-  </p>
+<div class="container overlay">
+  <div class="row">
+      <div class ="col-6 col-offset-3 text-center center-block" style="margin: 0 auto">
+    <h3>Add a new User-Event</h3>
+      <p *ngIf="saveError" class="error">
+        {{ saveError }}
+      </p>
 
-<form (ngSubmit)="saveNewUserEvent()">
+    <form (ngSubmit)="saveNewUserEvent()">
 
-  <label for="user-event-name-input"> UserEvent Name </label>
-  <input id="user-event-name-input" type="text" placeholder="UserEvent name" [(ngModel)]="userEventData.userEventName" name="userEventName">
-  <br>
+      <label for="user-event-name-input"> UserEvent Name </label>
+      <input id="user-event-name-input" type="text" placeholder="UserEvent name" [(ngModel)]="userEventData.userEventName" name="userEventName">
+      <br>
 
-  <label for="user-event-name-input"> UserEvent Description </label>
-  <input id="user-event-name-input" type="text" placeholder="UserEvent name" [(ngModel)]="userEventData.userEventName" name="userEventName">
-  <br>
+      <label for="user-event-name-input"> UserEvent Description </label>
+      <input id="user-event-name-input" type="text" placeholder="UserEvent name" [(ngModel)]="userEventData.userEventName" name="userEventName">
+      <br>
 
-  <label for="user-event-image-input"> User Event Image (optional)</label>
-  <input id="user-event-image-input" type="file" name="userEventImage" ng2FileSelect [uploader]="myCoolUploader">
-  <br>
+      <label for="user-event-image-input"> User Event Image (optional)</label>
+      <input id="user-event-image-input" type="file" name="userEventImage" ng2FileSelect [uploader]="myCoolUploader">
+      <br>
 
-  <button> Save UserEvent </button>
-</form>
+      <button> Save UserEvent </button>
+    </form>
+    </div>
+    </div>
+</div>

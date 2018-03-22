@@ -2,7 +2,7 @@
 
 <ul>
     <li><a [routerLink]="['/welcome']">Home</a></li>
-    <li><a [routerLink]="['/user:id']">Profile</a></li>
+    <li><a [routerLink]="['/users',this.currentUser._id]">Profile</a></li>
     <li><a [routerLink]="['/login']">Login</a></li>
     <li><a [routerLink]="['/signup']">Sign Up</a></li>
   </ul>

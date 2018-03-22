@@ -41,3 +41,8 @@ margin: 0 auto
   vertical-align: middle;
   float: none;
 }
+
+*{
+  font-family: courier;
+  color:white
+}

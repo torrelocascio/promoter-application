@@ -192,9 +192,9 @@ userEventRoutes.get("/api/user-events/:id", (req, res, next) => {
 // });
 
 //TESTING FOR ACCEPTING INVITE
-
-userEventRoutes.put('/api/user-events/:id/accept', (req, res, next) => {
-  
+userEventRoutes.put('/api/users/:id/user-events/accept', (req, res, next) => {
+  const userId = req.params.id;
+  console.log("body is: ", req.body)
   if (!req.user) {
     res.status(401).json({ message: "Log in to update the event." });
     return;
@@ -257,6 +257,9 @@ userEventRoutes.put('/api/user-events/:id/accept', (req, res, next) => {
       })
     })
 });
+
+
+
 
 //Testing for Decline Invite:
 
