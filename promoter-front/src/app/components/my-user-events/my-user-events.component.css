@@ -30,8 +30,10 @@ a {
   text-decoration: none; /* no underline */
 }
 
-.bordered{
-  /* border-top: 5px, dotted,hotpink;
-  border-left: 5px, dotted,hotpink; */
-  border: 5px, dotted, hotpink
+.border-item{
+    border-style: solid;
+    border-width: 5px;
+    border-radius:20px;
+    border-color:gray
+
 }

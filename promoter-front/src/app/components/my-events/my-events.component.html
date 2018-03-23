@@ -9,7 +9,7 @@
         
 
         <div class ="col-6 col-offset-3 text-center" style="margin: 0 auto">
-            <h2 style="margin-top:-10px; margin-bottom:20px">My Promoter Event List</h2>
+            <h1 style="margin-top:-10px; margin-bottom:20px">My Promoter Event List</h1>
      <button class="btn btn-success" style="margin-bottom:20px"><a [routerLink]="['/new-event']">Add a new event</a> </button>
       <button class="btn btn-danger" style="margin-bottom:20px" (click)="logMeOutPls()"> Log Out </button>
       <p *ngIf="logoutError" class="error">
@@ -23,7 +23,15 @@
  
 
   <div class="row text-center">
-      <div *ngFor="let event of events" class ="col-8 col-offset-2 text-center center-block"style="margin: 0 auto;background-color: rgba(73, 71, 71, 0.444);  ">
+      <!-- <h2 style="margin-top:-10px; margin-bottom:20px">--------------------</h2><br><br> -->
+      <!-- <button class="btn btn-success" style="margin-bottom:20px"><a [routerLink]="['/new-event']">Add a new event</a> </button>
+       <button class="btn btn-danger" style="margin-bottom:20px" (click)="logMeOutPls()"> Log Out </button>
+       <p *ngIf="logoutError" class="error">
+         {{ logoutError }}
+       </p> -->
+       
+     </div>
+      <div *ngFor="let event of events" class ="col-8 col-offset-2 text-center center-block border-item"style="margin: 0 auto;background-color: rgba(73, 71, 71, 0.444);  ">
       <div *ngIf="event.owner === userInfo._id" > 
           <img class="rounded-circle img-thumbnail" src="/assets/images/miamibackground.png" style="width:170px; height:170px"> 
           <br>
