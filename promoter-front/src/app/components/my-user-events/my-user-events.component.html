@@ -2,25 +2,29 @@
     <header>
       </header>
 <div *ngIf="userInfo">
-  <div class="container overlay">
-      <div class="row text-center" style="margin:0px auto">
-          <p class="bg-info text-center"> Hello, {{ userInfo.username }}, this is where you can view your created User-Events </p>
-        <div class ="col-6 col-offset-3 text-center center-block" style="margin: 0 auto">
-          <button class="btn btn-success"><a [routerLink]="['/new-user-event']">Add a new user-event</a></button>
-          <button class="btn btn-danger" (click)="logMeOutPls()"> Log Out </button>
+
+      <div class="row text-center overlay" style="margin:0px auto">
+        <p class="bg-info text-center"> Hello, {{ userInfo.username }}, this is where you can view your created User-Events </p>
+        <div class="col-8 col-offset-2 text-center center-block" style="margin: 0 auto">
+            <h2 style="margin-top:30px; margin-bottom:20px">My User Event List</h2>
+          <button class="btn btn-success" style="margin-bottom:30px"><a [routerLink]="['/new-user-event']">Add a new user-event</a></button>
+          <button style="margin-bottom:30px" class="btn btn-danger" (click)="logMeOutPls()"> Log Out </button>
           <p *ngIf="logoutError" class="error">
             {{ logoutError }}
           </p>
         </div>
       </div>
+   
+      
       
  
 
-    <h2 style="margin-top:30px; margin-bottom:20px">My User Event List</h2>
-    <div class="row text-center">
-      <div *ngFor="let userEvent of userEvents2" class ="col-8 col-offset-2 text-center center-block bordered"style="margin: 0 auto; background-color: rgba(73, 71, 71, 0.444);  ">
+   
+    <div class="row text-center overlay">
+   
+      <div *ngFor="let userEvent of userEvents2" class="col-8 col-offset-2 text-center center-block" style="margin: 0 auto; background-color: rgba(73, 71, 71, 0.444);">
         <!-- <div *ngIf="userEvent2.owner === userInfo._id" >  -->
-              <img class="img-circle img-responsive" src="/assets/images/miamibackground.png" style="width:170px; height:170px"> 
+              <img class="rounded-circle img-thumbnail" src="/assets/images/miamibackground.png" style="width:170px; height:170px"> 
               <br>
               <h4> <a [routerLink]="['/user-events', user-event]">My User-Event: <span style="color:hotpink">{{ userEvent.name }}</span></a></h4>
                <p>{{userEvent.description}}</p>
@@ -31,11 +35,9 @@
               </p>
             <br>
          <!-- </div> -->
+        </div>
       </div>
-    </div>
 
-  </div>
-</div>
 
   
 

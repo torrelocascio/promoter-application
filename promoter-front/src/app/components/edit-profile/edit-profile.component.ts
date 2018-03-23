@@ -31,6 +31,7 @@ export class EditProfileComponent implements OnInit {
   saveError = "";
 
   baseUrl = environment.apiBase;
+  uploader=<any>String
 
   myCoolUploader = new FileUploader({
     url: environment.apiBase + "/api/user-events",

@@ -1,5 +1,5 @@
 .container{
-  background-image:url('/assets/images/dullbackground1.png');
+
   }
 
 .overlay {
@@ -10,7 +10,7 @@
   top: 0;
   z-index: 10;
   margin-top:50px;
-  min-height:1000px
+  background-image:url('/assets/images/dullbackground1.png');
 }
 
 a {
@@ -20,5 +20,9 @@ a {
 
 *{
   font-family: courier
+}
+
+.bg-info{
+  height:30px
 }
 

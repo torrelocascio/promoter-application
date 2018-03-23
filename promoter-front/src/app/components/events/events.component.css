@@ -1,6 +1,6 @@
-.container{
+/* .container{
   background-image:url('/assets/images/dullbackground.png');
-  }
+  } */
 
 *{
   color:white;
@@ -18,5 +18,9 @@ input{
   left: 0;
   top: 0;
   z-index: 10;
-  margin-top:50px
+  margin-top:50px;
+
+}
+.row{
+  background-image:url('/assets/images/dullbackground.png');
 }

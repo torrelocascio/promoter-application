@@ -1,38 +1,35 @@
-<div *ngIf="currentUser">
-  <header>
 
+  <header></header>
+	<div class="row overlay" style="margin-left:3px">
     <p class="bg-info text-center"> Hello, {{ currentUser.username }}. Here, you can invite Users to your PreCreated Events!! </p>
 		<!-- <a [routerLink]="['/new-user-event']">Add a new event</a> -->
-	
-    
     <p *ngIf="logoutError" class="error">
       {{ logoutError }}
-    </p>
-	</header>
-	<div class="container">
-</div>
-<div class="container">
-		<div class="row text-center" style="margin-bottom:20px">
-				<div class="col-6 col-offset-3 text-center center-block" style="margin: 0 auto">
-				<h2 class="centered">User-Event List</h2>
-			</div>
-			</div>
-	<div class="row" *ngFor="let userEvent of userEvents" style="background-color:rgb(184, 181, 183)">
-  <div class="col-6 col-offset-3 text-center center-block" style="margin: 0 auto">
+		</p>
 
-		<img class="img-circle img-responsive" src="/assets/images/miamibackground.png" style="width:170px; height:170px">
+		<div class="col-6 col-offset-3 text-center" style="margin: 0px auto">
+				<h2>User-Event Requests</h2>
+		</div>
+		
+			
+
+  <div *ngFor="let userEvent of userEvents" class="col-8 col-offset-2 text-center" style="margin: 0 auto; background-color:rgb(184, 181, 183,.5)">
+
+		<img class="rounded-circle img-thumbnail" src="/assets/images/miamibackground.png" style="width:170px; height:170px">
 		<h4><a [routerLink]="['/user-events', userEvent._id]">{{ userEvent.name }}</a></h4>
 		
-		<select name="promoterEvent" #promoterEvent style="margin-bottom:40px">
+		<select name="promoterEvent" #promoterEvent style="margin-bottom:40px;max-width:250px">
 				<option  *ngFor="let promoterEvent of currentUser.eventCreated">
 					{{promoterEvent.name}}
 				</option>
 			</select>
-			<button (click)="collectTheData(userEvent._id, promoterEvent.value)">Invite</button>	
+			<button class="btn btn-success" (click)="collectTheData(userEvent._id, promoterEvent.value)">Invite</button>	
 			</div>
 		</div>
-	</div>
-  </div>
+
+	
+	
+
 
 
 

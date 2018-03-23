@@ -54,3 +54,21 @@ body{
  *{
     font-family: courier
   }
+
+  .overlay {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    margin-top:0px;
+  
+  }
+  .row{
+    background-image:url('/assets/images/dullbackground1.png');
+    min-height:500px
+  }
+  .bg-info{
+      height:30px
+  }

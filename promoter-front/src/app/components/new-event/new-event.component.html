@@ -1,28 +1,30 @@
-<div class="container overlay">
-    <div class="row">
+
+    <div class="row overlay">
         <div class ="col-6 col-offset-3 text-center center-block" style="margin: 0 auto">
 
-<h3>Add a new Event</h3>
+<h2 style="margin-top:20px">Add a new Event</h2>
   <p *ngIf="saveError" class="error">
     {{ saveError }}
   </p>
-
+<br>
 <form (ngSubmit)="saveNewEvent()">
 
   <label for="event-name-input"> Event Name </label>
   <input id="event-name-input" type="text" placeholder="Event name" [(ngModel)]="eventData.eventName" name="eventName">
   <br>
+  <br>
 
   <label for="event-description-input"> Event Description </label>
   <input id="event-description-input" type="text" placeholder="Event name" [(ngModel)]="eventData.eventDescription" name="eventDescription">
+  <br>
   <br>
 
   <label for="event-image-input"> User Event Image (optional)</label>
   <input id="event-image-input" type="file" name="eventImage" ng2FileSelect [uploader]="myCoolUploader">
   <br>
-
-  <button class="btn btn-success"> Save Event </button>
+  <br>
+  <button class="btn btn-success btn-lg"> Save Event </button>
 </form>
 </div>
 </div>
-</div>
+

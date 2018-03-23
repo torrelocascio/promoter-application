@@ -16,7 +16,7 @@ input{
 }
 
 .container{
-  background-image:url('/assets/images/miamibackground.png');
+
 
  
   
@@ -25,11 +25,12 @@ input{
 .row{
   align-content:center;
   align-items: center;
-  padding-top:60px
+ 
+  background-image:url('/assets/images/miamibackground.png');
 }
-.col-12{
-padding: 0 auto;
-margin: 0 auto;
+.offset-lg-3{
+padding: 0px, auto, 0px, auto;
+margin-top: -100px;
 background-color: rgba(73, 71, 71, 0.644);
 align-content: center
 }
@@ -41,6 +42,7 @@ align-content: center
   left: 0;
   top: 0;
   z-index: 10;
-  margin-top:50px
+  margin-top:50px;
+  padding-top:-80px;
 }
 

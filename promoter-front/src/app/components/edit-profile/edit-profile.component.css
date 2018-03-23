@@ -1,67 +1,7 @@
-body{
-  margin-top:20px;
-  background:#f5f5f5;
-}
-/**
-* Panels
-*/
-/*** General styles ***/
-.panel {
-box-shadow: none;
-}
-.panel-heading {
-border-bottom: 0;
-}
-.panel-title {
-font-size: 17px;
-}
-.panel-title > small {
-font-size: .75em;
-color: #999999;
-}
-.panel-body *:first-child {
-margin-top: 0;
-}
-.panel-footer {
-border-top: 0;
-}
 
-.panel-default > .panel-heading {
-  color: #333333;
-  background-color: transparent;
-  border-color: rgba(0, 0, 0, 0.07);
-}
-
-form label {
-  color: #999999;
-  font-weight: 400;
-}
-
-.form-horizontal .form-group {
-margin-left: -15px;
-margin-right: -15px;
-}
-@media (min-width: 768px) {
-.form-horizontal .control-label {
-  text-align: right;
-  margin-bottom: 0;
-  padding-top: 7px;
-}
-}
-
-.profile__contact-info-icon {
-  float: left;
-  font-size: 18px;
-  color: #999999;
-}
-.profile__contact-info-body {
-  overflow: hidden;
-  padding-left: 20px;
-  color: #999999;
-}
 
 .container{
-  background-image: url('assets/images/miamibackground2.png')
+
 }
 .overlay {
   position: absolute;
@@ -70,9 +10,19 @@ margin-right: -15px;
   left: 0;
   top: 0;
   z-index: 10;
-  margin-top:50px
+  margin-top:50px;
+  background-image: url('assets/images/miamibackground2.png')
 }
 *{
-  font-family: courier
+  font-family: courier;
+  color:white
+}
+
+input{
+  color:black
+}
+.offset-lg-3{
+  background-color: rgba(73, 71, 71, 0.644);
+
 }
                                   

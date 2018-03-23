@@ -12,7 +12,7 @@ import { Http } from "@angular/http";
   styleUrls: ['./my-events.component.css']
 })
 export class MyEventsComponent implements OnInit {
-
+logoutError:any;
   userInfo: any;
   events: any;
   promoterEvents: any;

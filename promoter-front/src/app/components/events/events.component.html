@@ -1,9 +1,8 @@
 <header>
 </header>
 <div *ngIf="currentUser">
-  <div class="container overlay">
     <div class="row">
-      <div class="offset-lg-3 col-lg-6 offset-sm-3 col-sm-6 offset-md-2 col-md-8 col-12"></div>
+      <div class="offset-lg-3 col-lg-6 offset-sm-3 col-sm-6 offset-md-2 col-md-8 col-12">
       <p> Hello, {{ currentUser.username }}. </p>
       <a [routerLink]="['/new-event']">Add a new event</a>
       <button (click)="logMeOutPls()"> Log Out </button>
@@ -19,4 +18,3 @@
     </div>
   </div>
   </div>
-</div>

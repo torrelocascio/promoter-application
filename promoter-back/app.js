@@ -8,11 +8,13 @@ var mongoose = require("mongoose");
 var session = require('express-session');
 var passport = require('passport');
 var cors = require('cors');
+require("dotenv").config();
 
 //passport set up
 require('./configs/passport-config');
 
 mongoose.connect('mongodb://localhost/promoter-app')
+mongoose.connect(process.env.MONGODB_URI);
 
 var app = express();
 

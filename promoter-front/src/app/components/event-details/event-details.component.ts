@@ -14,6 +14,7 @@ import "rxjs/add/operator/toPromise";
 })
 export class EventDetailsComponent implements OnInit {
   event = <any>{};
+  user=<any>String;
 
   public updatedEvent: Object = {};
   public eventName: String;
@@ -29,6 +30,7 @@ export class EventDetailsComponent implements OnInit {
   saveError = "";
 
   baseUrl = environment.apiBase;
+
 
   constructor(
     private myEventService: EventService,
